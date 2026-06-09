@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Majid Haji Bagheri — Research Portfolio</title>
+<meta name="description" content="PhD researcher in Electrical & Computer Engineering (University of Waterloo). Piezoelectric & triboelectric nanogenerators, self-powered sensing, energy storage, and materials R&D.">
+<meta property="og:title" content="Majid Haji Bagheri — Research Portfolio">
+<meta property="og:description" content="Self-powered sensors and energy-harvesting devices — from physics first principles to working hardware.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   Palette: dark "ink" + cool "paper" + a single amber "signal"
+   accent (the colour of a glowing voltage trace on an instrument).
+   Type: Fraunces (display serif) · Inter (body) · IBM Plex Mono (data)
+   ============================================================ */
+:root{
+  --ink:#0E1116;
+  --ink-soft:#161B23;
+  --ink-line:#262E3A;
+  --paper:#F4F5F7;
+  --surface:#FFFFFF;
+  --text:#1A1F28;
+  --text-2:#454D5A;
+  --muted:#737C8A;
+  --line:#E3E6EB;
+  --line-2:#D3D8E0;
+  --signal:#D2772E;
+  --signal-deep:#B5611F;
+  --signal-glow:#F2A24E;
+  --tint:#FBF3EA;     /* faint warm wash for the signal family */
+  --maxw:1120px;
+  --r:14px;
+  --shadow:0 1px 2px rgba(16,22,33,.04), 0 8px 30px rgba(16,22,33,.07);
+  --shadow-lg:0 20px 60px rgba(16,22,33,.16);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+body{
+  margin:0;
+  font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color:var(--text);
+  background:var(--paper);
+  line-height:1.62;
+  font-size:16.5px;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+::selection{background:var(--signal);color:#fff}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.eyebrow{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--signal-deep);font-weight:500;
+}
+.serif{font-family:"Fraunces", Georgia, "Times New Roman", serif;}
+
+/* ============================================================ NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 28px;
+  transition:background .35s ease, box-shadow .35s ease, padding .35s ease, border-color .35s ease;
+  border-bottom:1px solid transparent;
+}
+.nav.solid{
+  background:rgba(244,245,247,.86);
+  backdrop-filter:saturate(150%) blur(12px);
+  -webkit-backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid var(--line);
+  padding:11px 28px;
+}
+.nav__brand{
+  font-family:"Fraunces", Georgia, serif;font-weight:600;font-size:18px;
+  letter-spacing:.01em;color:#fff;text-decoration:none;white-space:nowrap;
+  transition:color .35s ease;
+}
+.nav.solid .nav__brand{color:var(--text)}
+.nav__brand b{color:var(--signal)}
+.nav__links{display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav__links::-webkit-scrollbar{display:none}
+.nav__links a{
+  font-size:13.5px;font-weight:500;color:rgba(255,255,255,.82);
+  text-decoration:none;padding:7px 12px;border-radius:8px;white-space:nowrap;
+  transition:color .25s ease, background .25s ease;
+}
+.nav__links a:hover{color:#fff;background:rgba(255,255,255,.10)}
+.nav.solid .nav__links a{color:var(--text-2)}
+.nav.solid .nav__links a:hover{color:var(--text);background:rgba(16,22,33,.06)}
+.nav__links a.cta{
+  color:#fff;background:var(--signal);font-weight:600;
+}
+.nav__links a.cta:hover{background:var(--signal-deep);color:#fff}
+.nav.solid .nav__links a.cta{color:#fff;background:var(--signal)}
+
+/* ============================================================ HERO */
+.hero{
+  position:relative;background:var(--ink);color:#fff;overflow:hidden;
+  padding:148px 0 0;
+}
+.hero__grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--ink-line) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--ink-line) 1px,transparent 1px);
+  background-size:64px 64px;
+  opacity:.35;
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 30%, #000 35%, transparent 78%);
+          mask-image:radial-gradient(ellipse 90% 70% at 50% 30%, #000 35%, transparent 78%);
+}
+.hero__inner{position:relative;z-index:2}
+.hero__top{display:flex;align-items:center;gap:46px;justify-content:space-between}
+.hero__text{flex:1;min-width:0}
+.hero__portrait{
+  flex:none;width:190px;height:190px;border-radius:22px;overflow:hidden;position:relative;
+  border:1px solid var(--ink-line);box-shadow:0 18px 50px rgba(0,0,0,.42);
+}
+.hero__portrait::after{content:"";position:absolute;inset:0;border-radius:22px;box-shadow:inset 0 0 0 1px rgba(242,162,78,.20);pointer-events:none}
+.hero__portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.hero__eyebrow{color:var(--signal-glow)}
+.hero h1{
+  font-family:"Fraunces", Georgia, serif;
+  font-weight:600;line-height:1.02;letter-spacing:-.015em;
+  margin:18px 0 0;
+  font-size:clamp(42px, 7.2vw, 84px);
+}
+.hero h1 .dim{color:#9aa3b2}
+.hero__lead{
+  margin:24px 0 0;max-width:660px;
+  font-size:clamp(17px,2.3vw,21px);line-height:1.55;color:#C9CFDA;font-weight:450;
+}
+.hero__lead b{color:#fff;font-weight:600}
+.hero__tags{
+  margin:22px 0 0;font-family:"IBM Plex Mono",monospace;font-size:13px;
+  color:#8b94a3;letter-spacing:.02em;
+}
+.hero__tags span{color:var(--signal-glow)}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0 0}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:14.5px;font-weight:600;text-decoration:none;
+  padding:12px 20px;border-radius:10px;border:1px solid transparent;
+  transition:transform .18s ease, background .2s ease, border-color .2s ease, color .2s ease;
+}
+.btn svg{width:16px;height:16px}
+.btn--primary{background:var(--signal);color:#fff}
+.btn--primary:hover{background:var(--signal-deep)}
+.btn--ghost{background:transparent;color:#E7EAF0;border-color:#39414f}
+.btn--ghost:hover{border-color:#6a7484;background:rgba(255,255,255,.04)}
+.btn:active{transform:translateY(1px)}
+
+/* signature: voltage-output waveform */
+.hero__wave{
+  position:relative;z-index:2;margin-top:54px;height:190px;width:100%;
+  border-top:1px solid var(--ink-line);
+}
+.hero__wave canvas{width:100%;height:100%;display:block}
+.hero__wavelabel{
+  position:absolute;left:28px;top:14px;z-index:3;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:#5f6878;
+}
+.hero__wavelabel b{color:var(--signal-glow);font-weight:500}
+
+/* ============================================================ SECTION SHELL */
+.section{padding:96px 0}
+.section--tight{padding:80px 0}
+.section__head{max-width:720px;margin:0 0 44px}
+.section__head h2{
+  font-family:"Fraunces",Georgia,serif;font-weight:600;
+  font-size:clamp(30px,4.4vw,46px);letter-spacing:-.012em;line-height:1.06;
+  margin:12px 0 0;
+}
+.section__head p{margin:16px 0 0;color:var(--text-2);font-size:17.5px;max-width:640px}
+
+/* ============================================================ ABOUT */
+#about{background:var(--surface);border-bottom:1px solid var(--line)}
+.about__grid{display:grid;grid-template-columns:1.55fr 1fr;gap:56px;align-items:start}
+.about__body p{margin:0 0 18px;color:var(--text-2);font-size:17.5px}
+.about__body p:first-child{color:var(--text);font-size:19px}
+.about__body strong{color:var(--text);font-weight:600}
+.facts{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--paper)}
+.fact{padding:18px 22px;border-bottom:1px solid var(--line)}
+.fact:last-child{border-bottom:0}
+.fact__n{font-family:"Fraunces",serif;font-weight:600;font-size:26px;line-height:1;color:var(--signal-deep)}
+.fact__l{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em;color:var(--muted);margin-top:7px;text-transform:uppercase}
+
+/* ============================================================ RESEARCH / PROJECTS */
+.filters{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 32px}
+.chip{
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.02em;
+  padding:8px 14px;border-radius:999px;border:1px solid var(--line-2);
+  background:var(--surface);color:var(--text-2);cursor:pointer;
+  transition:all .2s ease;
+}
+.chip:hover{border-color:var(--signal);color:var(--signal-deep)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.card{
+  position:relative;text-align:left;cursor:pointer;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:26px 26px 24px;font:inherit;color:inherit;
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  display:flex;flex-direction:column;min-height:208px;
+}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--line-2)}
+.card:focus-visible{outline:2.5px solid var(--signal);outline-offset:3px}
+.card__top{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.card__idx{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--signal-deep);letter-spacing:.06em}
+.card__period{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted)}
+.card h3{
+  font-family:"Fraunces",serif;font-weight:600;font-size:23px;line-height:1.18;
+  letter-spacing:-.01em;margin:14px 0 0;
+}
+.card__sum{margin:11px 0 0;color:var(--text-2);font-size:15px;line-height:1.55}
+.card__tags{margin-top:auto;padding-top:16px;display:flex;flex-wrap:wrap;gap:7px}
+.tag{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.02em;
+  padding:4px 9px;border-radius:6px;background:var(--tint);color:var(--signal-deep);
+}
+.card__more{
+  margin-top:14px;font-size:13px;font-weight:600;color:var(--text-2);
+  display:inline-flex;align-items:center;gap:6px;transition:gap .2s ease,color .2s ease;
+}
+.card:hover .card__more{gap:10px;color:var(--signal-deep)}
+
+/* ============================================================ MODAL (project detail) */
+.modal{
+  position:fixed;inset:0;z-index:100;display:none;
+  align-items:flex-start;justify-content:center;
+  padding:48px 20px;
+}
+.modal.open{display:flex}
+.modal__scrim{position:fixed;inset:0;background:rgba(10,13,18,.62);backdrop-filter:blur(3px);animation:fade .25s ease}
+.modal__panel{
+  position:relative;background:var(--surface);width:100%;max-width:760px;
+  border-radius:18px;box-shadow:var(--shadow-lg);
+  max-height:calc(100vh - 96px);overflow-y:auto;
+  animation:rise .32s cubic-bezier(.16,.84,.44,1);
+}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+  .modal__scrim,.modal__panel{animation:none}
+}
+.modal__hd{
+  position:sticky;top:0;background:var(--ink);color:#fff;
+  padding:26px 30px 24px;border-radius:18px 18px 0 0;z-index:2;
+}
+.modal__close{
+  position:absolute;top:18px;right:18px;width:38px;height:38px;border-radius:10px;
+  border:1px solid var(--ink-line);background:rgba(255,255,255,.04);color:#fff;
+  cursor:pointer;font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;
+  transition:background .2s ease, border-color .2s ease;
+}
+.modal__close:hover{background:rgba(255,255,255,.12);border-color:#4a546b}
+.modal__close:focus-visible{outline:2px solid var(--signal-glow);outline-offset:2px}
+.modal__idx{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--signal-glow);letter-spacing:.1em}
+.modal__hd h3{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(24px,4vw,32px);line-height:1.12;margin:12px 50px 0 0;letter-spacing:-.01em}
+.modal__meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:7px}
+.modal__meta .tag{background:rgba(242,162,78,.14);color:var(--signal-glow)}
+.modal__period{font-family:"IBM Plex Mono",monospace;font-size:12px;color:#9aa3b2;margin-top:12px}
+.modal__bd{padding:30px}
+.block{margin:0 0 26px}
+.block:last-child{margin-bottom:0}
+.block__l{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--signal-deep);font-weight:500;margin:0 0 9px;
+}
+.block p{margin:0;color:var(--text-2);font-size:16px;line-height:1.62}
+.block ul{margin:0;padding-left:20px;color:var(--text-2);font-size:15.5px}
+.block ul li{margin:0 0 7px}
+.linklist{display:flex;flex-direction:column;gap:9px}
+.linklist a{
+  display:flex;align-items:center;gap:10px;text-decoration:none;
+  padding:12px 15px;border:1px solid var(--line);border-radius:10px;
+  font-size:14.5px;color:var(--text);transition:border-color .2s ease, background .2s ease;
+}
+.linklist a:hover{border-color:var(--signal);background:var(--tint)}
+.linklist a .lk-ico{color:var(--signal-deep);flex:none}
+.linklist a .lk-meta{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);margin-left:auto}
+.figs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.fig figcaption{font-size:13px;color:var(--muted);margin-top:7px}
+.empty{
+  border:1px dashed var(--line-2);border-radius:12px;padding:24px;text-align:center;
+  color:var(--muted);font-size:14.5px;background:var(--paper);
+}
+.empty b{color:var(--text-2);font-weight:600;display:block;margin-bottom:4px;font-size:15px}
+
+/* ============================================================ PUBLICATIONS */
+#publications{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pub{
+  display:block;text-decoration:none;color:inherit;
+  padding:22px 0;border-top:1px solid var(--line);
+  transition:padding-left .25s ease;
+}
+.pub:first-of-type{border-top:0}
+.pub:hover{padding-left:10px}
+.pub__row{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+.pub__year{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--signal-deep);flex:none;width:46px}
+.pub__main{flex:1;min-width:260px}
+.pub__title{font-size:16.5px;font-weight:600;line-height:1.4;color:var(--text)}
+.pub:hover .pub__title{color:var(--signal-deep)}
+.pub__venue{margin-top:5px;font-size:14.5px;color:var(--text-2)}
+.pub__venue em{font-style:italic}
+.pub__badge{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.04em;
+  padding:3px 8px;border-radius:5px;text-transform:uppercase;flex:none;align-self:center;
+}
+.pub__badge--first{background:var(--ink);color:#fff}
+.pub__badge--co{background:var(--tint);color:var(--signal-deep)}
+.pub__arrow{flex:none;color:var(--muted);align-self:center}
+.pub:hover .pub__arrow{color:var(--signal-deep)}
+.pub-note{margin-top:26px;font-size:15px;color:var(--text-2)}
+.pub-note a{color:var(--signal-deep);font-weight:600}
+
+/* ============================================================ CONTACT / FOOTER */
+.footer{background:var(--ink);color:#fff;padding:92px 0 40px}
+.footer__eyebrow{color:var(--signal-glow)}
+.footer h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(30px,5vw,52px);line-height:1.05;margin:14px 0 0;letter-spacing:-.012em;max-width:680px}
+.footer__lead{margin:20px 0 0;color:#C2C9D4;font-size:18px;max-width:540px}
+.footer__links{display:flex;flex-wrap:wrap;gap:13px;margin:34px 0 0}
+.flink{
+  display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#E7EAF0;
+  border:1px solid #333c4a;border-radius:11px;padding:13px 18px;font-size:14.5px;font-weight:500;
+  transition:border-color .2s ease, background .2s ease, transform .18s ease;
+}
+.flink:hover{border-color:var(--signal);background:rgba(210,119,46,.10);transform:translateY(-2px)}
+.flink svg{width:17px;height:17px;color:var(--signal-glow)}
+.footer__base{
+  margin-top:64px;padding-top:24px;border-top:1px solid var(--ink-line);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-family:"IBM Plex Mono",monospace;font-size:12px;color:#717b8a;letter-spacing:.02em;
+}
+
+/* ============================================================ REVEAL ANIMATION */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+}
+
+/* ============================================================ RESPONSIVE */
+@media (max-width:880px){
+  .about__grid{grid-template-columns:1fr;gap:34px}
+  .grid{grid-template-columns:1fr}
+  .nav__brand{font-size:16px}
+  .section{padding:72px 0}
+}
+@media (max-width:560px){
+  .wrap{padding:0 20px}
+  .nav{padding:13px 18px}
+  .nav.solid{padding:10px 18px}
+  .hero{padding:120px 0 0}
+  .figs{grid-template-columns:1fr}
+  .nav__brand span.full{display:none}
+}
+@media (max-width:760px){
+  .hero__top{flex-direction:column;align-items:flex-start;gap:26px}
+  .hero__portrait{order:-1;width:112px;height:112px;border-radius:18px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav__brand">Majid <b>·</b> <span class="full">Haji Bagheri</span></a>
+  <div class="nav__links">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#contact" class="cta">Contact</a>
+  </div>
+</nav>
+
+<!-- ============================ HERO ============================ -->
+<header class="hero" id="top">
+  <div class="hero__grid"></div>
+  <div class="hero__inner">
+    <div class="wrap">
+      <div class="hero__top">
+        <div class="hero__text">
+          <p class="eyebrow hero__eyebrow">PhD Researcher · Electrical &amp; Computer Engineering · University of Waterloo</p>
+          <h1>Majid <span class="dim">Haji Bagheri</span></h1>
+          <p class="hero__lead">I build <b>self-powered sensors and energy-harvesting devices</b> — from physics first principles, through the cleanroom, to working hardware that measures the real world.</p>
+          <p class="hero__tags">piezoelectric &amp; triboelectric nanogenerators <span>/</span> self-powered sensing <span>/</span> energy storage <span>/</span> materials R&amp;D</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#research">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              Explore the research
+            </a>
+            <a class="btn btn--ghost" href="#contact">Get in touch</a>
+          </div>
+        </div>
+        <div class="hero__portrait">
+          <img src="majid-haji-bagheri.jpg" alt="Majid Haji Bagheri" width="560" height="560" loading="eager">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero__wave">
+    <span class="hero__wavelabel">Triboelectric output <b>// V(t)</b></span>
+    <canvas id="wave" aria-hidden="true"></canvas>
+  </div>
+</header>
+
+<!-- ============================ ABOUT ============================ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about__grid">
+      <div class="about__body reveal">
+        <p class="eyebrow">About</p>
+        <p>I&#8217;m a PhD candidate in Electrical &amp; Computer Engineering at the University of Waterloo, working in <strong>Prof. Dayan Ban&#8217;s</strong> group at the Waterloo Institute for Nanotechnology.</p>
+        <p>My research turns everyday mechanical motion — taps, vibration, sound — into electrical signals using <strong>piezoelectric and triboelectric nanogenerators</strong>, and pairs those devices with <strong>machine learning</strong> so they can sense their surroundings without a battery.</p>
+        <p>I came to engineering from condensed-matter physics, and it still shapes how I work: model first, then build and measure. Over six years of graduate research I&#8217;ve led industry-collaborative projects with the <strong>National Research Council of Canada</strong>, <strong>Shimco North America</strong> (now Voss Innovative Technologies), and the <strong>University of Toronto</strong>, fabricated devices in the cleanroom, run first-principles simulations, and published as first author in journals including <em>Nano Energy</em> and <em>Energy &amp; Environmental Materials</em>, with co-authorship in <em>Nature Communications</em>.</p>
+      </div>
+      <div class="facts reveal" aria-label="At a glance">
+        <div class="fact"><div class="fact__n">16</div><div class="fact__l">Peer-reviewed publications</div></div>
+        <div class="fact"><div class="fact__n">Patent</div><div class="fact__l">In preparation — lead-free PENG</div></div>
+        <div class="fact"><div class="fact__n">Nature Comms.</div><div class="fact__l">Co-author · 2024</div></div>
+        <div class="fact"><div class="fact__n">3+ yrs</div><div class="fact__l">Industry R&amp;D · NRC · VITC · U Toronto</div></div>
+        <div class="fact"><div class="fact__n">Nov 2026</div><div class="fact__l">PhD expected</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ RESEARCH ============================ -->
+<section class="section" id="research">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="eyebrow">Research &amp; Projects</p>
+      <h2>Devices, materials, and the instruments that test them.</h2>
+      <p>Select a project to read it in full — overview, my role, approach, outcomes, and the papers it produced.</p>
+    </div>
+    <div class="filters reveal" id="filters" role="group" aria-label="Filter projects by area"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- ============================ PUBLICATIONS ============================ -->
+<section class="section section--tight" id="publications">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="eyebrow">Publications</p>
+      <h2>Selected peer-reviewed work.</h2>
+      <p>First-author and co-authored papers in energy-harvesting, sensing, and materials. Each links to its DOI.</p>
+    </div>
+    <div id="pubs" class="reveal"></div>
+    <p class="pub-note reveal">Also peer-reviewed conference papers at IEEE CCECE, IFETC, DCAS, NENS and CSSTC. Full, current list on <a href="https://scholar.google.com/citations?user=2ZuanigAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
+  </div>
+</section>
+
+<!-- ============================ CONTACT / FOOTER ============================ -->
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <p class="eyebrow footer__eyebrow">Contact</p>
+    <h2>Open to industry R&amp;D and device-engineering roles from late 2026.</h2>
+    <p class="footer__lead">Available part-time now and full-time from November 2026. Happy to talk about energy harvesting, self-powered sensing, or anything at the physics–device boundary.</p>
+    <div class="footer__links">
+      <a class="flink" href="mailto:majidhajibagheri1996@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        majidhajibagheri1996@gmail.com
+      </a>
+      <a class="flink" href="https://scholar.google.com/citations?user=2ZuanigAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 9l10 6 8-4.8V17"/><path d="M6 12.2V17c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.8"/></svg>
+        Google Scholar
+      </a>
+      <a class="flink" href="http://www.linkedin.com/in/majid-haji-bagheri-80430014a" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 13v4"/></svg>
+        LinkedIn
+      </a>
+      <!-- To enable: place your CV PDF beside this file and keep the name below, or change href. -->
+      <a class="flink" href="Majid_Haji_Bagheri_Resume.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v5h5M7 3h8l5 5v13H7z"/><path d="M9 13h6M9 17h4"/></svg>
+        Download CV
+      </a>
+    </div>
+    <div class="footer__base">
+      <span>Waterloo, ON, Canada · Canadian Open Work Permit</span>
+      <span>© <span id="yr"></span> Majid Haji Bagheri</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================ MODAL ============================ -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__scrim" data-close></div>
+  <div class="modal__panel" role="document">
+    <div class="modal__hd">
+      <button class="modal__close" id="modal-close" aria-label="Close project">×</button>
+      <span class="modal__idx" id="modal-idx"></span>
+      <h3 id="modal-title"></h3>
+      <div class="modal__meta" id="modal-meta"></div>
+      <div class="modal__period" id="modal-period"></div>
+    </div>
+    <div class="modal__bd" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════
+   ▸▸  HOW TO ADD OR EDIT A PROJECT  ◂◂
+   Everything you see on the page is generated from the two arrays below:
+   PROJECTS and PUBLICATIONS. To add a project, copy one { … } block,
+   paste it into the PROJECTS array, and edit the fields. Nothing else
+   needs to change.
+
+   Project fields:
+     idx        "08"                       (shown as the little number)
+     title      "My new project"
+     period     "2025 – present"           (optional)
+     category   "Sensors & ML"             (creates/uses a filter chip)
+     tags       ["Tag A","Tag B"]          (small labels on the card)
+     summary    "One sentence for the card."
+     overview   "A paragraph for the detail view."
+     role       "What you personally did."
+     methods    "Techniques / approach."
+     highlights ["Outcome 1","Outcome 2"]  (bullets — use REAL results)
+     links      [{label:"...", url:"https://...", meta:"DOI / Venue"}]
+     figures    [{src:"my-figure.png", caption:"..."}]
+                 → put image files next to this .html and use the filename.
+                   Leave [] and a friendly "add figures" box appears.
+   ════════════════════════════════════════════════════════════════════ */
+
+const PROJECTS = [
+  {
+    idx:"01",
+    title:"Self-Powered Acoustic Sensing with Machine Learning",
+    period:"2022 – present · NRC collaboration",
+    category:"Sensors & ML",
+    tags:["TENG","Machine learning","Acoustic sensing","Self-powered","Signal processing"],
+    summary:"A battery-free triboelectric microphone paired with a fine-tuned ML classifier — accurate enough to rival the phone mics used to train Google’s sound models.",
+    overview:"A self-powered microphone built from a triboelectric nanogenerator (TENG) that converts sound pressure into electrical signals, feeding a machine-learning classifier for real-time sound monitoring and event detection. The device harvests and stores energy from background noise, then spends it to capture data during a sound event — so it records with no external power to switch it on. Delivered for the National Research Council of Canada (NRC).",
+    role:"Designed and built the device, ran signal acquisition and signal processing, and prepared the data for the classifier; first author on the resulting papers.",
+    methods:"TENG microphone structure designed in AutoCAD for maximum output; signal acquisition and processing in Python; classification with open-source Google ML models, fine-tuned on the device’s own data; integration of a high-temperature vitrimer material with hole-size and structure tuning for temperature resilience.",
+    highlights:[
+      "3× higher output (voltage, current, and power) from the AutoCAD-optimised TENG structure.",
+      "Fine-tuned the classifier from 80% to 96% accuracy — a benchmark-leading result.",
+      "Recording accuracy approaching the phone microphones used to train Google’s sound-event models.",
+      "Self-powered: stores energy during background noise and records during sound events without external power.",
+      "Delivered a 2-year NRC scope in 1 year, producing 3 publications."
+    ],
+    links:[
+      {label:"Sustainable live sound monitoring & classification", url:"https://doi.org/10.1002/eem2.70044", meta:"Energy & Environmental Materials · 2025"},
+      {label:"ML-enabled TENG for continuous sound monitoring & captioning", url:"https://doi.org/10.1002/adsr.202400156", meta:"Advanced Sensor Research · 2025"},
+      {label:"Data-driven environmental sound classification with acoustic TENGs", url:"https://doi.org/10.1109/CCECE59415.2024.10667121", meta:"IEEE CCECE · 2024"}
+    ],
+    figures:[]
+  },
+  {
+    idx:"02",
+    title:"Lead-Free Cryogenic Piezoelectric Nanogenerators",
+    period:"2022 – present · Shimco / VITC collaboration",
+    category:"Materials & Devices",
+    tags:["PENG","Lead-free","Cryogenic","DFT","Quantum ESPRESSO","Patent"],
+    summary:"A novel lead-free piezoelectric material — engineered around the quantum lone-pair effect — that beats lead-based materials even at room temperature and keeps working down to cryogenic temperatures. Now being patented.",
+    overview:"Piezoelectric devices for aerospace must survive cryogenic temperatures and be non-toxic for mass production — yet lead-free piezoelectrics usually underperform their lead-based counterparts. Working with Shimco North America (now Voss Innovative Technologies, VITC), I designed a completely new lead-free piezoelectric material that exploits the lone-pair effect, a quantum-mechanical mechanism, to raise performance — strongly at low temperature, and even above lead-based materials at room temperature.",
+    role:"Led the material design, first-principles validation, synthesis, and cryogenic characterisation; also built the custom cryogenic / humidity test rig used to measure it (see Custom Research Instrumentation).",
+    methods:"Lone-pair-effect-driven material design; DFT validation in Quantum ESPRESSO with close simulation–experiment agreement; a novel synthesis route to further raise output; cryogenic characterisation (d33, dielectric, voltage–current under mechanical excitation).",
+    highlights:[
+      "Lead-free material that outperforms lead-based piezoelectrics at room temperature and operates down to cryogenic temperatures.",
+      "Performance mechanism explained and validated with DFT (Quantum ESPRESSO); simulation matched experiment closely.",
+      "Patent in preparation (with patent counsel) on the new material, assigned to Shimco / VITC.",
+      "Targeted at non-toxic, mass-producible piezoelectrics for the aerospace industry."
+    ],
+    links:[],
+    figures:[]
+  },
+  {
+    idx:"03",
+    title:"Self-Healable, Recyclable Vitrimer TENGs",
+    period:"2022 – 2023 · University of Toronto collaboration",
+    category:"Materials & Devices",
+    tags:["TENG","Vitrimer","Self-healing","Recyclable","High-temperature"],
+    summary:"A triboelectric generator on a vitrimer composite that works at high temperature and can be recycled and re-assembled after damage — without losing output.",
+    overview:"Triboelectric nanogenerators normally degrade at high temperature and can’t be repaired or recycled once damaged. In a collaboration with the University of Toronto, I used a vitrimer composite — a reprocessable polymer network — to make a TENG that performs in harsh, high-temperature conditions and can be recycled and re-assembled, substantially improving its durability and performance. The material was later integrated into the self-powered acoustic sensor for temperature resilience.",
+    role:"First author: composite development, device fabrication, and electromechanical characterisation.",
+    methods:"Vitrimer composite formulation; TENG fabrication; high-temperature and recyclability testing; self-powered wireless demonstration.",
+    highlights:[
+      "High-temperature operation where conventional TENGs fail, via a vitrimer composite.",
+      "Recyclable and re-assemblable after damage — a major durability gain.",
+      "Delivered a 1-year scope in 8 months."
+    ],
+    links:[
+      {label:"Self-healable, recyclable vitrimer composite for high-performance TENGs", url:"https://doi.org/10.1016/j.nanoen.2024.110306", meta:"Nano Energy · 2024"}
+    ],
+    figures:[]
+  },
+  {
+    idx:"04",
+    title:"Perovskite Piezocomposites & First-Principles Design",
+    period:"2022 – 2024",
+    category:"Materials & Simulation",
+    tags:["PENG","Perovskite","DFT","Lead-free","Review"],
+    summary:"Designing lead-free and molecular/hybrid perovskite piezocomposites for nanogenerators, with DFT linking electronic structure and polarisation to device performance.",
+    overview:"Piezoelectric nanogenerators need materials with strong, stable polarisation — ideally lead-free. This thread studies molecular/hybrid and lead-free perovskite piezocomposites, using first-principles DFT to connect electronic structure and ferroelectric polarisation to performance, alongside a comprehensive review of the field.",
+    role:"First-author comprehensive review (Nano Energy, 2023) and DFT work; co-author on the Nature Communications study (2024) of a polymer-functionalised perovskite piezocomposite with large current-density output.",
+    methods:"DFT / electronic-structure and ferroelectric-polarisation calculations (Quantum ESPRESSO); materials screening; literature synthesis.",
+    highlights:[
+      "Co-authored Nature Communications (2024) on a high-current-density perovskite piezocomposite.",
+      "First-author comprehensive review in Nano Energy (2023).",
+      "The group’s perovskite work featured on CTV News Kitchener and University of Waterloo News."
+    ],
+    links:[
+      {label:"Breaking the dielectric dilemma via polymer-functionalised perovskite piezocomposite", url:"https://doi.org/10.1038/s41467-024-53846-6", meta:"Nature Communications · 2024"},
+      {label:"Molecular/hybrid perovskites for PENGs — a comprehensive review", url:"https://doi.org/10.1016/j.nanoen.2023.109101", meta:"Nano Energy · 2023"}
+    ],
+    figures:[]
+  },
+  {
+    idx:"05",
+    title:"Nanostructured Anodes for Lithium-Ion Batteries",
+    period:"2019 – 2022 · MSc & industry",
+    category:"Energy storage",
+    tags:["Li-ion","SnS₂","MXene","Graphene","Binder-free"],
+    summary:"SnS₂, MXene and graphene anode materials that pushed capacity and cycle life well past the literature — delivered to industry partners months ahead of schedule.",
+    overview:"During my MSc and an industry collaboration with the Iran Nanobattery Network and Parthian Battery, I developed nanostructured anode materials for lithium-ion batteries — SnS₂, Ti₃C₂Tₓ MXene, and porous graphene — and engineered binders to push capacity and cycle life. I also designed, built, and programmed a custom inert-atmosphere glove box for moisture-sensitive cell fabrication, and led the group’s experimental planning.",
+    role:"Led the battery research group and the industry milestones: materials synthesis, cell fabrication, electrochemical characterisation, partner coordination, and custom instrumentation.",
+    methods:"SnS₂ and Ti₃C₂Tₓ MXene synthesis (LiF/HCl etch); improved graphene oxide via Hummers’ method; binder-free electrodes using MXene in place of CMC; porous-graphene anodes; coin-cell assembly in glove box; galvanostatic cycling and cyclic voltammetry.",
+    highlights:[
+      "+20% performance over the literature by improving SnS₂/graphene-oxide anodes with a refined Hummers’-method graphene oxide.",
+      "~2× cycle life by introducing Ti₃C₂Tₓ MXene (LiF/HCl synthesis).",
+      "Binder-free SnS₂ + MXene anode (MXene replacing CMC): +50% performance and ~2× life — delivered an 18-month milestone in 8 months (Iran Nanobattery Network · Parthian).",
+      "Follow-on porous-graphene anode: +20% performance, delivering a 2-year scope in 1 year.",
+      "Exceeded partner targets on cycle life (≈1.8× expectations) through hands-on experimental planning.",
+      "PEDOT:PSS printed-circuit sensor structures in a separate Sharif industry collaboration."
+    ],
+    links:[],
+    figures:[]
+  },
+  {
+    idx:"06",
+    title:"Custom Research Instrumentation",
+    period:"2021 – present",
+    category:"Hardware & instrumentation",
+    tags:["Instrumentation","Cryogenics","Humidity control","d33","Glove box"],
+    summary:"The rigs behind the results: a cryogenic + humidity test station accurate to ±2 °C and ±3% RH, motor-tapping benches, and an inert-atmosphere glove box — all built and programmed in-house.",
+    overview:"Reliable device data needs reliable instruments. I designed and built a cryogenic / humidity characterisation station for piezoelectric devices, plus motor-tapping benches for repeatable mechanical excitation and an oxygen/moisture-controlled glove box for battery fabrication — covering mechanical design, control electronics, and software.",
+    role:"End-to-end ownership: mechanical design, instrumentation, control programming, and troubleshooting.",
+    methods:"Temperature and humidity control loops; motor control; sensor integration; data acquisition for d33, dielectric, and voltage–current measurements under mechanical excitation.",
+    highlights:[
+      "Cryogenic station: cooled from room temperature to −150 °C and held to ±2 °C.",
+      "Integrated humidity control from 5% to 99% RH at ±3%, via humidifier, dehumidifier, and sensor.",
+      "Supports d33, dielectric, and voltage–current measurements under mechanical excitation.",
+      "Motor-tapping benches for reproducible energy-harvester benchmarking.",
+      "Custom inert-atmosphere glove box for moisture-sensitive battery cells."
+    ],
+    links:[],
+    figures:[]
+  },
+  {
+    idx:"07",
+    title:"Monte Carlo Simulation of Thin-Film Growth",
+    period:"2018 · BSc thesis",
+    category:"Materials & Simulation",
+    tags:["Monte Carlo","Ballistic deposition","Thin-film growth","Python"],
+    summary:"Where the physics started: simulating ballistic deposition to show how a growing surface roughens and saturates — a result later reused in MSc theses and confirmed experimentally.",
+    overview:"My undergraduate thesis used stochastic (Monte Carlo) simulation of the ballistic-deposition model to study non-equilibrium thin-film growth — how surface morphology and roughness evolve and eventually saturate. I reproduced, in simulation, a saturation behaviour described in the literature; the simulation was later reused in MSc theses and confirmed experimentally. It built the intuition for physical vapour deposition and thin-film growth I later applied to sputtering, CVD, and cleanroom fabrication.",
+    role:"Sole researcher: simulation, data analysis, and visualisation in Python.",
+    methods:"Monte Carlo simulation; roughness and saturation analysis; Python data analysis and plotting.",
+    highlights:[
+      "Reproduced surface-roughness saturation in simulation, matching the textbook result.",
+      "Simulation later reused in MSc theses and verified experimentally.",
+      "Foundational modelling later applied to PVD / thin-film fabrication."
+    ],
+    links:[],
+    figures:[]
+  }
+];
+
+const PUBLICATIONS = [
+  {year:"2026", title:"Photoconductivity-driven quantum-efficiency gain in inorganic Ruddlesden–Popper layered Cs₂PbBr₂I₂ perovskite photodetectors", venue:"Advanced Functional Materials", role:"co", url:"https://doi.org/10.1002/adfm.202522928"},
+  {year:"2024", title:"Breaking the dielectric dilemma via polymer-functionalised perovskite piezocomposite with large current-density output", venue:"Nature Communications", role:"co", url:"https://doi.org/10.1038/s41467-024-53846-6"},
+  {year:"2024", title:"Self-healable, recyclable, and mechanically robust vitrimer composite for high-performance triboelectric nanogenerators", venue:"Nano Energy", role:"first", url:"https://doi.org/10.1016/j.nanoen.2024.110306"},
+  {year:"2023", title:"Advancements and challenges in molecular/hybrid perovskites for piezoelectric nanogenerators: a comprehensive review", venue:"Nano Energy", role:"first", url:"https://doi.org/10.1016/j.nanoen.2023.109101"},
+  {year:"2025", title:"Sustainable live sound monitoring and classification enabled by a triboelectric nanogenerator and machine learning", venue:"Energy & Environmental Materials", role:"first", url:"https://doi.org/10.1002/eem2.70044"},
+  {year:"2025", title:"Machine-learning-enabled triboelectric nanogenerator for continuous sound monitoring and captioning", venue:"Advanced Sensor Research", role:"first", url:"https://doi.org/10.1002/adsr.202400156"},
+  {year:"2024", title:"Terahertz radiation detectors using CMOS-compatible SOI substrates", venue:"Advanced Functional Materials", role:"co", url:"https://doi.org/10.1002/adfm.202400313"}
+];
+
+/* ───────────────────────── render: filters + cards ───────────────────────── */
+const grid = document.getElementById('grid');
+const filterBar = document.getElementById('filters');
+const cats = ["All", ...Array.from(new Set(PROJECTS.map(p=>p.category)))];
+let activeCat = "All";
+
+function esc(s){return String(s);}
+
+function renderFilters(){
+  filterBar.innerHTML = cats.map(c=>
+    `<button class="chip" role="button" aria-pressed="${c===activeCat}" data-cat="${esc(c)}">${esc(c)}</button>`
+  ).join('');
+}
+function renderCards(){
+  const list = PROJECTS.filter(p=>activeCat==="All"||p.category===activeCat);
+  grid.innerHTML = list.map(p=>`
+    <button class="card reveal in" data-id="${esc(p.idx)}" aria-label="Open project: ${esc(p.title)}">
+      <div class="card__top">
+        <span class="card__idx">${esc(p.idx)}</span>
+        ${p.period?`<span class="card__period">${esc(p.period)}</span>`:''}
+      </div>
+      <h3>${esc(p.title)}</h3>
+      <p class="card__sum">${esc(p.summary)}</p>
+      <div class="card__tags">${p.tags.slice(0,4).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
+      <span class="card__more">Read in full
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </button>`).join('');
+}
+filterBar.addEventListener('click', e=>{
+  const b = e.target.closest('[data-cat]'); if(!b) return;
+  activeCat = b.dataset.cat;
+  renderFilters(); renderCards();
+});
+grid.addEventListener('click', e=>{
+  const c = e.target.closest('[data-id]'); if(!c) return;
+  openModal(c.dataset.id, c);
+});
+
+/* ───────────────────────── render: publications ───────────────────────── */
+const pubs = document.getElementById('pubs');
+pubs.innerHTML = PUBLICATIONS.map(p=>`
+  <a class="pub" href="${esc(p.url)}" target="_blank" rel="noopener">
+    <div class="pub__row">
+      <span class="pub__year">${esc(p.year)}</span>
+      <span class="pub__main">
+        <span class="pub__title">${esc(p.title)}</span>
+        <span class="pub__venue"><em>${esc(p.venue)}</em></span>
+      </span>
+      <span class="pub__badge ${p.role==='first'?'pub__badge--first':'pub__badge--co'}">${p.role==='first'?'First author':'Co-author'}</span>
+      <span class="pub__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+    </div>
+  </a>`).join('');
+
+/* ───────────────────────── modal (project detail) ───────────────────────── */
+const modal = document.getElementById('modal');
+const mIdx = document.getElementById('modal-idx');
+const mTitle = document.getElementById('modal-title');
+const mMeta = document.getElementById('modal-meta');
+const mPeriod = document.getElementById('modal-period');
+const mBody = document.getElementById('modal-body');
+const mClose = document.getElementById('modal-close');
+let lastFocus = null;
+
+function block(label, inner){ return `<div class="block"><p class="block__l">${label}</p>${inner}</div>`; }
+
+function openModal(id, trigger){
+  const p = PROJECTS.find(x=>x.idx===id); if(!p) return;
+  lastFocus = trigger || document.activeElement;
+  mIdx.textContent = "Project " + p.idx;
+  mTitle.innerHTML = p.title;
+  mMeta.innerHTML = p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+  mPeriod.textContent = p.period || "";
+
+  let html = "";
+  if(p.overview) html += block("Overview", `<p>${p.overview}</p>`);
+  if(p.role)     html += block("My role", `<p>${p.role}</p>`);
+  if(p.methods)  html += block("Approach", `<p>${p.methods}</p>`);
+  if(p.highlights && p.highlights.length)
+    html += block("Highlights", `<ul>${p.highlights.map(h=>`<li>${h}</li>`).join('')}</ul>`);
+  if(p.links && p.links.length)
+    html += block("Outputs &amp; papers", `<div class="linklist">${p.links.map(l=>`
+      <a href="${esc(l.url)}" target="_blank" rel="noopener">
+        <span class="lk-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></span>
+        <span>${esc(l.label)}</span>
+        ${l.meta?`<span class="lk-meta">${esc(l.meta)}</span>`:''}
+      </a>`).join('')}</div>`);
+
+  const figInner = (p.figures && p.figures.length)
+    ? `<div class="figs">${p.figures.map(f=>`<figure class="fig"><img src="${esc(f.src)}" alt="${esc(f.caption||p.title)}" loading="lazy"><figcaption>${esc(f.caption||'')}</figcaption></figure>`).join('')}</div>`
+    : `<div class="empty"><b>Add figures here</b>Drop image files next to this page and list them in the project&#8217;s <code>figures</code> array.</div>`;
+  html += block("Figures", figInner);
+
+  mBody.innerHTML = html;
+  mBody.scrollTop = 0;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  mClose.focus();
+  document.addEventListener('keydown', onKey);
+}
+function closeModal(){
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', onKey);
+  if(lastFocus && lastFocus.focus) lastFocus.focus();
+}
+function onKey(e){
+  if(e.key === 'Escape'){ closeModal(); return; }
+  if(e.key === 'Tab'){
+    const f = modal.querySelectorAll('a[href], button');
+    if(!f.length) return;
+    const first = f[0], last = f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+  }
+}
+modal.addEventListener('click', e=>{ if(e.target.hasAttribute('data-close')) closeModal(); });
+mClose.addEventListener('click', closeModal);
+
+/* ───────────────────────── nav state + reveal + year ───────────────────────── */
+const nav = document.getElementById('nav');
+const onScroll = ()=>{ nav.classList.toggle('solid', window.scrollY > 40); };
+onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduce && 'IntersectionObserver' in window){
+  const io = new IntersectionObserver((ents)=>{
+    ents.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }});
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+}
+
+renderFilters();
+renderCards();
+
+/* ───────────────────────── signature: voltage-output waveform ─────────────────────────
+   A glowing amber trace shaped like a triboelectric nanogenerator's output:
+   sharp bipolar spikes on a quiet baseline, scrolling left. This is, literally,
+   a picture of what the devices in this portfolio produce.                          */
+(function(){
+  const canvas = document.getElementById('wave');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w=0, h=0, dpr=1, mid=0;
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio||1, 2);
+    w = canvas.clientWidth; h = canvas.clientHeight; mid = h*0.56;
+    canvas.width = Math.floor(w*dpr); canvas.height = Math.floor(h*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const PERIOD = 230;          // px between pulses
+  const AMP = () => h*0.30;    // spike amplitude relative to height
+
+  // value of the trace at a given (scrolling) x position
+  function val(x){
+    const a = AMP();
+    const ph = ((x % PERIOD) + PERIOD) % PERIOD;
+    let y = 0;
+    // sharp positive spike
+    y += a * Math.exp(-Math.pow((ph-18)/9, 2));
+    // negative undershoot just after
+    y -= a*0.46 * Math.exp(-Math.pow((ph-40)/13, 2));
+    // small secondary ripple
+    y += a*0.12 * Math.exp(-Math.pow((ph-70)/20, 2));
+    // faint baseline texture
+    y += Math.sin(x*0.05) * a*0.025;
+    return y;
+  }
+
+  function drawGrid(){
+    ctx.strokeStyle = 'rgba(255,255,255,0.045)';
+    ctx.lineWidth = 1;
+    for(let gx=0; gx<=w; gx+=64){ ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,h); ctx.stroke(); }
+    // baseline
+    ctx.strokeStyle = 'rgba(255,255,255,0.10)';
+    ctx.beginPath(); ctx.moveTo(0,mid); ctx.lineTo(w,mid); ctx.stroke();
+  }
+
+  function trace(off){
+    ctx.beginPath();
+    for(let x=0; x<=w; x+=2){
+      const y = mid - val(x+off);
+      if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+  }
+
+  function render(off){
+    ctx.clearRect(0,0,w,h);
+    drawGrid();
+    // glow pass
+    ctx.save();
+    ctx.shadowColor = 'rgba(242,162,78,0.9)';
+    ctx.shadowBlur = 16;
+    ctx.strokeStyle = 'rgba(242,162,78,0.95)';
+    ctx.lineWidth = 2.2; ctx.lineJoin='round'; ctx.lineCap='round';
+    trace(off); ctx.stroke();
+    ctx.restore();
+    // crisp core line
+    ctx.strokeStyle = '#FAD9AE';
+    ctx.lineWidth = 1; ctx.lineJoin='round';
+    trace(off); ctx.stroke();
+  }
+
+  if(reduce){
+    render(0);
+  } else {
+    let off = 0;
+    (function loop(){
+      off += 1.1;
+      render(off);
+      requestAnimationFrame(loop);
+    })();
+  }
+})();
+</script>
+</body>
+</html>
