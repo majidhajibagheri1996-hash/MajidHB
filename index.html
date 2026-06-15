@@ -3065,8 +3065,10 @@ window.SITE = {
   email: 'majidhajibagheri1996@gmail.com',
   scholar: 'https://scholar.google.com/citations?user=2ZuanigAAAAJ&hl=en',
   linkedin: 'http://www.linkedin.com/in/majid-haji-bagheri-80430014a',
-  // CV lives next to index.html in your repo (relative link → never 404s).
-  cv: 'Majid_Haji_Bagheri_CV.pdf',
+  // Résumé documents — live HTML in /resume (print-to-PDF built in). Static PDF kept as backup.
+  cv: 'resume/cv.html',          // full multi-page CV
+  resume: 'resume/index.html',   // one-page résumé
+  cvPdf: 'Majid_Haji_Bagheri_CV.pdf',
   // Contact form delivery (static-site friendly, works on GitHub Pages).
   // 1) Create a free form at https://formspree.io (send to majidhajibagheri1996@gmail.com)
   // 2) Paste the form ID it gives you (looks like "xyzabcd") below.
@@ -3363,8 +3365,10 @@ window.SITE = {
   email: 'majidhajibagheri1996@gmail.com',
   scholar: 'https://scholar.google.com/citations?user=2ZuanigAAAAJ&hl=en',
   linkedin: 'http://www.linkedin.com/in/majid-haji-bagheri-80430014a',
-  // CV lives next to index.html in your repo (relative link → never 404s).
-  cv: 'Majid_Haji_Bagheri_CV.pdf',
+  // Résumé documents — live HTML in /resume (print-to-PDF built in). Static PDF kept as backup.
+  cv: 'resume/cv.html',          // full multi-page CV
+  resume: 'resume/index.html',   // one-page résumé
+  cvPdf: 'Majid_Haji_Bagheri_CV.pdf',
 
   // Contact form delivery (static-site friendly, works on GitHub Pages).
   // 1) Create a free form at https://formspree.io (send to majidhajibagheri1996@gmail.com)
@@ -4362,7 +4366,11 @@ function Contact() {
               </a>
               <a className="contact-link" href={S.cv} target="_blank" rel="noopener">
                 <span className="contact-link__ico"><FileText size={17} /></span>
-                <span className="contact-link__t">Download CV (PDF)</span>
+                <span className="contact-link__t">Full CV</span>
+              </a>
+              <a className="contact-link" href={S.resume} target="_blank" rel="noopener">
+                <span className="contact-link__ico"><FileText size={17} /></span>
+                <span className="contact-link__t">One-page résumé</span>
               </a>
             </div>
           </div>
