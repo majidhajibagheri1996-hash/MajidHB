@@ -1,0 +1,116 @@
+/* ============================================================
+   CV / Résumé — shared print styles (Bagheri Research)
+   Used by resume/index.html (one-page) and cv.html (full).
+   ============================================================ */
+
+body { margin: 0; background: var(--ink-100); }
+
+/* screen-only toolbar */
+.toolbar { position: sticky; top: 0; z-index: 20; display: flex; justify-content: center; align-items: center; gap: 12px;
+  padding: 12px; background: color-mix(in oklab, var(--ink-100) 80%, transparent); backdrop-filter: blur(8px); }
+.toolbar__btn { font-family: var(--font-sans); font-size: 13px; font-weight: 600; cursor: pointer;
+  background: var(--signal-500); color: var(--text-on-accent); border: 0; border-radius: var(--radius-2); padding: 9px 18px;
+  transition: background var(--dur-fast) var(--ease-out); }
+.toolbar__btn:hover { background: var(--signal-600); }
+.toolbar__link { font-family: var(--font-mono); font-size: 13px; color: var(--ink-700); text-decoration: none;
+  border: 1px solid var(--border-bold); border-radius: var(--radius-2); padding: 8px 16px; transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
+.toolbar__link:hover { border-color: var(--signal-500); color: var(--signal-700); }
+
+.page {
+  width: 816px; margin: 0 auto 24px; box-sizing: border-box;
+  background: var(--surface-card); color: var(--text-body);
+  padding: 52px 56px 44px; box-shadow: var(--shadow-lg);
+  font-family: var(--font-sans); font-size: 12px; line-height: 1.5;
+}
+
+/* Header */
+.cv-head { border-bottom: 2px solid var(--ink-900); padding-bottom: 16px; margin-bottom: 20px; }
+.cv-head__row { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.cv-head__row > div:first-child { flex: 1 1 auto; min-width: 0; }
+.cv-name { font-family: var(--font-serif); font-size: 34px; font-weight: 600; letter-spacing: -0.02em; color: var(--text-strong); margin: 0; line-height: 1.04; white-space: nowrap; }
+.cv-tag { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.05em; color: var(--signal-700); margin: 9px 0 0; line-height: 1.5; max-width: 52ch; }
+.cv-head__avail { flex: none; text-align: right; font-family: var(--font-mono); font-size: 10px; line-height: 1.6; color: var(--text-muted);
+  border: 1px solid var(--border-strong); border-radius: var(--radius-2); padding: 8px 12px; position: relative; white-space: nowrap; }
+.cv-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--success-500); margin-right: 6px; }
+.cv-contact { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 12px; font-size: 11.5px; color: var(--text-muted); }
+.cv-contact a { color: var(--text-body); text-decoration: none; }
+.cv-contact a:hover { color: var(--signal-700); }
+.cv-contact .sep { color: var(--ink-200); }
+.cv-auth { margin-top: 7px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.03em; color: var(--text-faint); }
+
+/* two-column body */
+.cv-body { display: grid; grid-template-columns: 0.92fr 2.08fr; gap: 30px; }
+
+.cv-sec { margin-bottom: 20px; }
+.cv-sec:last-child { margin-bottom: 0; }
+.cv-sec__label { display: flex; align-items: center; gap: 9px; font-family: var(--font-mono);
+  font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 11px; }
+.cv-sec__label::before { content: ""; width: 18px; height: 2px; background: var(--signal-500); flex: none; }
+.cv-sec__note { letter-spacing: 0.04em; color: var(--text-faint); text-transform: none; }
+
+.cv-summary { font-size: 12px; line-height: 1.55; color: var(--text-body); margin: 0; }
+.cv-summary strong { color: var(--text-strong); font-weight: 600; }
+.cv-mini { font-size: 11px; line-height: 1.5; color: var(--text-muted); margin: 0; }
+.cv-mini strong { color: var(--text-body); font-weight: 600; }
+
+/* expertise groups */
+.cv-exp-group { margin-bottom: 11px; }
+.cv-exp-group h4 { font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; color: var(--text-strong); margin: 0 0 3px; }
+.cv-exp-group p { margin: 0; font-size: 10.5px; color: var(--text-muted); line-height: 1.45; }
+
+/* impact bullets (accent) */
+.cv-impact { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.cv-impact li { display: flex; gap: 9px; font-size: 11.5px; line-height: 1.45; color: var(--text-body); }
+.cv-impact li::before { content: ""; flex: none; width: 9px; height: 9px; border: 2px solid var(--signal-500); border-radius: 50%; margin-top: 3px; }
+.cv-impact strong { color: var(--text-strong); font-weight: 600; }
+.cv-impact em { font-style: italic; color: var(--text-body); }
+
+/* experience */
+.cv-job { margin-bottom: 14px; }
+.cv-job:last-child { margin-bottom: 0; }
+.cv-job__top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.cv-job__role { font-family: var(--font-serif); font-size: 14px; font-weight: 600; color: var(--text-strong); margin: 0; line-height: 1.2; }
+.cv-job__date { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); white-space: nowrap; flex: none; }
+.cv-job__org { font-size: 11.5px; color: var(--signal-700); margin: 2px 0 7px; }
+.cv-job ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.cv-job li { display: flex; gap: 9px; font-size: 11px; line-height: 1.45; color: var(--text-body); }
+.cv-job li::before { content: ""; flex: none; width: 9px; height: 2px; background: var(--signal-500); margin-top: 8px; }
+.cv-job li strong { color: var(--text-strong); font-weight: 600; }
+.cv-job li em { font-style: italic; color: var(--text-muted); }
+
+/* education */
+.cv-edu { margin-bottom: 11px; }
+.cv-edu:last-child { margin-bottom: 0; }
+.cv-edu__deg { font-size: 11.5px; font-weight: 600; color: var(--text-strong); }
+.cv-edu__meta { font-size: 10.5px; color: var(--text-muted); margin-top: 2px; }
+.cv-edu__date { font-family: var(--font-mono); font-size: 10px; color: var(--signal-700); }
+
+/* publications */
+.cv-pub { display: flex; gap: 10px; padding: 6px 0; border-top: 1px solid var(--border-hairline); font-size: 11px; }
+.cv-pub:first-of-type { border-top: 0; }
+.cv-pub__year { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); flex: none; width: 28px; padding-top: 1px; }
+.cv-pub__t { line-height: 1.4; color: var(--text-body); }
+.cv-pub__t em { color: var(--text-muted); font-style: italic; }
+.cv-pub__t b { color: var(--text-strong); font-weight: 600; }
+.cv-pub__role { font-family: var(--font-mono); font-size: 9.5px; color: var(--signal-700); white-space: nowrap; }
+
+/* generic prose rows (teaching, media) */
+.cv-row { display: flex; gap: 10px; padding: 5px 0; border-top: 1px solid var(--border-hairline); font-size: 11px; line-height: 1.45; }
+.cv-row:first-of-type { border-top: 0; }
+.cv-row__k { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); flex: none; width: 96px; padding-top: 1px; }
+.cv-row__v { color: var(--text-body); }
+.cv-row__v b { color: var(--text-strong); font-weight: 600; }
+
+.cv-awards { font-size: 11px; line-height: 1.6; color: var(--text-muted); margin: 0; }
+.cv-awards strong { color: var(--text-body); font-weight: 600; }
+
+/* full-width section inside the grid */
+.cv-full { grid-column: 1 / -1; }
+
+@media print {
+  body { background: #fff; }
+  .toolbar { display: none; }
+  .page { box-shadow: none; margin: 0; width: auto; padding: 0.5in 0.55in; }
+  .cv-job, .cv-edu, .cv-sec { break-inside: avoid; }
+  @page { size: letter; margin: 0; }
+}
