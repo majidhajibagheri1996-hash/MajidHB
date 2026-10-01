@@ -3230,7 +3230,7 @@ window.SITE = {
       items: [
         { metric: 'Government/Industry', org: 'National Research Council of Canada (NRC)', bullets: ['ML-enabled self-powered acoustic sensing.', 'TENG microphone with machine-learning sound classification and captioning.'] },
         { metric: 'Industry', org: 'VITC (formerly Shimco)', bullets: ['Lead-free piezoelectric material for cryogenic energy harvesting.', 'Custom cryogenic + humidity characterization rig, built from scratch.'] },
-        { metric: 'Academic', org: 'University of Waterloo \u2013 University of Toronto', bullets: ['Self-healable, recyclable vitrimer-composite TENG for harsh-environment energy harvesting.', 'First-author paper in Nano Energy (2024).'] },
+        { metric: 'Academic', org: 'University of Waterloo \u2013 University of Toronto \u00B7 Prof. Ning Yan', bullets: ['Self-healable, recyclable vitrimer-composite TENG for harsh-environment energy harvesting.', 'First-author paper in Nano Energy (2024).'] },
         { metric: 'Academic', org: 'University of Waterloo \u00B7 Prof. Yimin Wu', bullets: ['Ecoflex-based TENGs for low-temperature and harsh-environment energy harvesting.', 'Silicone elastomer that stays soft and elastic at sub-zero temperatures.', 'Manuscript submitted.'] },
         { metric: 'Earlier \u00B7 Iran', org: 'Parthian Battery Novin \u00B7 Iran Nano Battery Network \u00B7 Sharif Solar', bullets: ['M.Sc-era Li-ion battery R&D.', 'SnS₂/MXene anodes.', 'Custom glove-box instrumentation.'] },
       ],
@@ -4175,11 +4175,12 @@ window.ORG_LINKS = {
   'Nima Taghavinia': 'https://scholar.google.com/citations?user=ClrrfJwAAAAJ&hl=en',
   'Russell Thompson': 'https://uwaterloo.ca/thompson-group/about/people/thompson',
   'Peter Neathway': 'https://www.linkedin.com/in/peter-neathway/',
-  'Yimin Wu': 'https://scholar.google.co.uk/citations?user=fUQsZB0AAAAJ&hl=en'
+  'Yimin Wu': 'https://scholar.google.co.uk/citations?user=fUQsZB0AAAAJ&hl=en',
+  'Ning Yan': 'https://chem-eng.utoronto.ca/faculty-staff/faculty-members/ning-yan/'
 };
 window.linkifyOrgs = function (text) {
   if (typeof text !== 'string') return text;
-  const tokens = ['Asif Abdullah Khan', 'Yimin Wu', 'Russell Thompson', 'Peter Neathway', 'Douglas Wilhelm Harder', 'Bahareh Sadeghimakki', 'Azam Irajizad', 'Nima Taghavinia', 'Ali Esfandiar', 'Wilkes University', 'Hany Aziz', 'Dayan Ban', 'National Research Council of Canada (NRC)', 'VITC (Shimco)', 'Iran Nano Battery Network', 'Parthian Battery Novin', 'University of Toronto', 'Shimco', 'Sharif Solar', 'NRC'];
+  const tokens = ['Asif Abdullah Khan', 'Yimin Wu', 'Ning Yan', 'Russell Thompson', 'Peter Neathway', 'Douglas Wilhelm Harder', 'Bahareh Sadeghimakki', 'Azam Irajizad', 'Nima Taghavinia', 'Ali Esfandiar', 'Wilkes University', 'Hany Aziz', 'Dayan Ban', 'National Research Council of Canada (NRC)', 'VITC (Shimco)', 'Iran Nano Battery Network', 'Parthian Battery Novin', 'University of Toronto', 'Shimco', 'Sharif Solar', 'NRC'];
   let parts = [text];
   let k = 0;
   tokens.forEach(function (tok) {
