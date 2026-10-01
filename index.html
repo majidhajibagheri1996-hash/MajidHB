@@ -449,6 +449,9 @@ section[id] { scroll-margin-top: 84px; }
   padding: 13px 16px; border-bottom: 1px solid var(--border-hairline);
   font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); }
 .profile__bar > span { white-space: nowrap; display: inline-flex; align-items: center; }
+/* longer affiliation text: wrap onto two lines instead of widening the card */
+.profile__bar { flex-wrap: wrap; row-gap: 5px; line-height: 1.45; }
+.profile__bar > span { white-space: normal; min-width: 0; }
 .profile__photo { width: 100%; aspect-ratio: 4 / 4.4; object-fit: cover; object-position: center 22%; display: block; background: var(--paper-2); }
 .profile__cap { padding: 16px 18px; border-top: 1px solid var(--border-hairline); background: var(--surface-card);
   display: flex; flex-direction: column; gap: 3px; }
@@ -4382,7 +4385,7 @@ function Hero() {
     className: "profile__bar"
   }, React.createElement("span", null, React.createElement("span", {
     className: "panel__dot"
-  }), "Waterloo Institute for Nanotechnology"), React.createElement("span", null, "PhD \xB7 ECE")), React.createElement("img", {
+  }), "University of Waterloo, Waterloo Institute for Nanotechnology"), React.createElement("span", null, "PhD \xB7 Electrical and Computer Engineering \xB7 Nanotechnology")), React.createElement("img", {
     className: "profile__photo",
     src: S.photo,
     alt: "Majid Haji Bagheri",
