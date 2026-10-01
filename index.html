@@ -521,6 +521,8 @@ section[id] { scroll-margin-top: 84px; }
 .proj-figure { position: relative; width: fit-content; max-width: 100%; margin: 0 auto 22px; border: 1px solid var(--border-hairline); border-radius: var(--radius-3);
   overflow: hidden; background: #fff; }
 .proj-figure img { display: block; width: auto; height: auto; max-width: 100%; max-height: 460px; object-fit: contain; background: #fff; }
+/* matted figures: a white margin keeps the corner ticks off the image edges (e.g. figures with text in a corner) */
+.proj-figure--matted { padding: 16px; }
 .proj-figure figcaption { position: absolute; bottom: 12px; left: 14px; font-family: var(--font-mono); font-size: 12px;
   letter-spacing: 0.06em; color: var(--text-on-dark-muted); background: rgba(20,20,15,0.7); padding: 4px 8px; border-radius: var(--radius-1); }
 .proj-figure__tick { position: absolute; width: 11px; height: 11px; pointer-events: none; }
@@ -3052,6 +3054,21 @@ window.SITE = {
       icon: 'Atom',
     },
     {
+      id: 'phasefield',
+      pimg: 'assets/figures/projects/08_phase_field_batio3_ferret_moose.webp',
+      palt: 'Phase-field simulation of BaTiO3: free-energy curves near the phase transition, a schematic susceptibility peak, and the polarization map of a single particle in PDMS',
+      tag: 'Simulation · phase-field modeling',
+      year: '2026–present',
+      title: 'Phase-field simulation of BaTiO₃ — FERRET / MOOSE',
+      blurb: 'Landau–Ginzburg–Devonshire free-energy framework and domain structure in a single particle. Four energy terms (Landau, gradient, elastic and electrostatic) are minimized to find the equilibrium polarization pattern.',
+      role: 'Set up the phase-field model in FERRET / MOOSE to study low-temperature ferroelectric phase transitions and domain evolution, including a BaTiO₃ particle embedded in a PDMS matrix.',
+      approach: 'Landau–Ginzburg–Devonshire theory · FERRET / MOOSE finite elements · Landau, gradient, elastic & electrostatic energy terms.',
+      outcome: 'Validation first, then prediction: bulk BaTiO₃ is reproduced against its known phase sequence before any composite case is run. Methodology only.',
+      keywords: ['phase-field', 'ferroelectric', 'BaTiO₃', 'MOOSE'],
+      icon: 'Orbit',
+      pmat: true,
+    },
+    {
       id: 'leadfree',
       pimg: 'assets/figures/projects/01_lead_free_piezoelectric_material_cryogenic_energy_harvesting.png',
       palt: 'Lead-free piezoelectric ceramic chip frosted with cryogenic ice on a cooled metal test stage',
@@ -3128,20 +3145,6 @@ window.SITE = {
       icon: 'Cpu',
       href: 'https://doi.org/10.1002/adsr.202400156',
       cta: 'Read the paper',
-    },
-    {
-      id: 'phasefield',
-      pimg: 'assets/figures/projects/08_phase_field_batio3_ferret_moose.webp',
-      palt: 'Phase-field simulation of BaTiO3: free-energy curves near the phase transition, a schematic susceptibility peak, and the polarization map of a single particle in PDMS',
-      tag: 'Simulation · phase-field modeling',
-      year: 'Ph.D',
-      title: 'Phase-field simulation of BaTiO₃ — FERRET / MOOSE',
-      blurb: 'Landau–Ginzburg–Devonshire free-energy framework and domain structure in a single particle. Four energy terms (Landau, gradient, elastic and electrostatic) are minimized to find the equilibrium polarization pattern.',
-      role: 'Set up the phase-field model in FERRET / MOOSE to study low-temperature ferroelectric phase transitions and domain evolution, including a BaTiO₃ particle embedded in a PDMS matrix.',
-      approach: 'Landau–Ginzburg–Devonshire theory · FERRET / MOOSE finite elements · Landau, gradient, elastic & electrostatic energy terms.',
-      outcome: 'Validation first, then prediction: bulk BaTiO₃ is reproduced against its known phase sequence before any composite case is run. Methodology only.',
-      keywords: ['phase-field', 'ferroelectric', 'BaTiO₃', 'MOOSE'],
-      icon: 'Orbit',
     },
     {
       id: 'battery',
@@ -4536,7 +4539,7 @@ function Research() {
     className: "proj-detail",
     key: p.id
   }, React.createElement("figure", {
-    className: "proj-figure" + (p.pimg ? "" : " proj-figure--placeholder")
+    className: "proj-figure" + (p.pimg ? "" : " proj-figure--placeholder") + (p.pmat ? " proj-figure--matted" : "")
   }, p.pimg ? React.createElement("img", {
     src: p.pimg,
     alt: p.palt || p.title,
