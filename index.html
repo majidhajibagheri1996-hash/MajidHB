@@ -1931,7 +1931,7 @@ function Footer() {
     className: "foot__meta"
   }, /*#__PURE__*/React.createElement(MapPin, {
     size: 14
-  }), " Waterloo, ON, Canada \xB7 Canadian Open Work Permit"), /*#__PURE__*/React.createElement(DS.Waveform, {
+  }), " Waterloo, ON, Canada"), /*#__PURE__*/React.createElement(DS.Waveform, {
     variant: "sine",
     color: "var(--signal-500)",
     height: 26,
@@ -2540,7 +2540,7 @@ function Research() {
     className: "section__title"
   }, "Industry collaborations, devices, and the instruments that test them."), /*#__PURE__*/React.createElement("p", {
     className: "section__sub"
-  }, "Three-plus years leading collaborative R&D with the NRC and VITC (formerly Shimco) \u2014 alongside the devices, materials, and custom hardware behind it. Select an item to read it in full.")), /*#__PURE__*/React.createElement("div", {
+  }, "Four-plus years leading collaborative R&D with the NRC and VITC (formerly Shimco) \u2014 alongside the devices, materials, and custom hardware behind it. Select an item to read it in full.")), /*#__PURE__*/React.createElement("div", {
     className: "research"
   }, /*#__PURE__*/React.createElement("div", {
     className: "proj-list",
@@ -3036,16 +3036,30 @@ window.SITE = {
 
   projects: [
     {
+      id: 'lonepair',
+      pimg: 'assets/figures/papers/014.webp',
+      palt: 'Graphical abstract: electron-localization map of the Sn lone pair, the distorted SnCl6 octahedron, and a wristwatch powered at minus 50 degrees Celsius',
+      tag: 'First author · Advanced Functional Materials (accepted)',
+      year: '2023–2026',
+      title: 'Lone-pair-induced lattice distortion in a lead-free perovskite nanogenerator',
+      blurb: 'A lead-free 2D Ruddlesden–Popper perovskite, (ATHP)₂SnCl₄, in which the stereochemically active Sn²⁺ lone pair distorts the [SnCl₆]⁴⁻ octahedra (about 4× the distortion of the lead analogue) and breaks inversion symmetry. Blended into P(VDF-TrFE), it powers a commercial wristwatch for more than 15 minutes at −50 °C.',
+      role: 'Synthesized the single crystals under inert atmosphere; solved the structure by single-crystal XRD; confirmed non-centrosymmetry by SHG microscopy and the active lone pair by DFT (PDOS, ELF) and XPS; fabricated the composite PENG and characterized it from room temperature down to −90 °C in a custom cryogenic chamber.',
+      approach: 'Lone-pair engineering · single-crystal XRD · SHG · XPS · DFT (Quantum ESPRESSO) · P(VDF-TrFE) composite · cryogenic & humidity testing.',
+      outcome: 'd₃₃ of 65.7 pC·N⁻¹, 2.34 mW·cm⁻² power density and 203 V peak-to-peak open-circuit voltage; keeps 65% of its voltage at −90 °C (about 3.5× better retention than pure P(VDF-TrFE)). First-author paper accepted in Advanced Functional Materials (2026); presented at WIN Day 2026.',
+      keywords: ['PENG', 'lead-free', 'lone pair', 'cryogenic', 'DFT'],
+      icon: 'Atom',
+    },
+    {
       id: 'leadfree',
       pimg: 'assets/figures/projects/01_lead_free_piezoelectric_material_cryogenic_energy_harvesting.png',
       palt: 'Lead-free piezoelectric ceramic chip frosted with cryogenic ice on a cooled metal test stage',
       tag: 'Industry · VITC (Shimco) · 2 patents in prep',
       year: '2023–present',
-      title: 'Lead-free piezoelectric material for cryogenic energy harvesting',
-      blurb: 'A novel non-toxic, lead-free piezoelectric material that exploits the lone-pair effect to outperform its lead-based analogue even at room temperature — engineered for aerospace-grade, mass-producible energy harvesting that excels at low and cryogenic temperatures.',
+      title: 'Low-temperature nanogenerators for aerospace — two patents in preparation',
+      blurb: 'Two patent filings in preparation with VITC (Shimco): a lone-pair-induced piezoelectric nanogenerator and a non-ferroelectric multilayer nanogenerator, both engineered for non-toxic, mass-producible energy harvesting at low and cryogenic temperatures in aerospace applications.',
       role: 'Designed the lead-free material system and cascaded device, validated electronic structure and ferroelectric polarization by first-principles DFT (Quantum ESPRESSO) in close agreement with experiment, and developed an optimized synthesis.',
       approach: 'Lone-pair lead-free piezocomposite · multi-layer cascaded architecture · DFT (Quantum ESPRESSO) · custom cryogenic instrumentation.',
-      outcome: 'Outperforms the lead-based analogue at room temperature; two patents in preparation with Voss Innovative Technologies Corporation (VITC / Shimco); presented at NENS 2025 (Beijing). First-author paper on the (ATHP)₂SnCl₄ lone-pair perovskite accepted in Advanced Functional Materials (2026) — 2.34 mW·cm⁻² power density and a d₃₃ of 65.7 pC·N⁻¹ in the optimized composite, with the device keeping 65% of its voltage at −90 °C.',
+      outcome: 'Lone-pair material outperforms its lead-based analogue at room temperature; two patents in preparation with Voss Innovative Technologies Corporation (VITC / Shimco); presented at NENS 2025 (Beijing).',
       keywords: ['PENG', 'lead-free', 'cryogenic', 'DFT', 'patents'],
       icon: 'Snowflake',
       href: 'https://doi.org/10.1016/j.nanoen.2023.109101',
@@ -3112,6 +3126,20 @@ window.SITE = {
       icon: 'Cpu',
       href: 'https://doi.org/10.1002/adsr.202400156',
       cta: 'Read the paper',
+    },
+    {
+      id: 'phasefield',
+      pimg: 'assets/figures/projects/08_phase_field_batio3_ferret_moose.webp',
+      palt: 'Phase-field simulation of BaTiO3: free-energy curves near the phase transition, a schematic susceptibility peak, and the polarization map of a single particle in PDMS',
+      tag: 'Simulation · phase-field modeling',
+      year: 'Ph.D',
+      title: 'Phase-field simulation of BaTiO₃ — FERRET / MOOSE',
+      blurb: 'Landau–Ginzburg–Devonshire free-energy framework and domain structure in a single particle. Four energy terms (Landau, gradient, elastic and electrostatic) are minimized to find the equilibrium polarization pattern.',
+      role: 'Set up the phase-field model in FERRET / MOOSE to study low-temperature ferroelectric phase transitions and domain evolution, including a BaTiO₃ particle embedded in a PDMS matrix.',
+      approach: 'Landau–Ginzburg–Devonshire theory · FERRET / MOOSE finite elements · Landau, gradient, elastic & electrostatic energy terms.',
+      outcome: 'Validation first, then prediction: bulk BaTiO₃ is reproduced against its known phase sequence before any composite case is run. Methodology only.',
+      keywords: ['phase-field', 'ferroelectric', 'BaTiO₃', 'MOOSE'],
+      icon: 'Orbit',
     },
     {
       id: 'battery',
@@ -4038,7 +4066,8 @@ Object.assign(window, {
 <script>
 /* Portrait panel — polarization switching in a perovskite slab, with a schematic P–E loop. */
 function PolarizationLattice({
-  className
+  className,
+  topCrop = 0
 }) {
   const ref = React.useRef(null);
   React.useEffect(() => {
@@ -4047,7 +4076,7 @@ function PolarizationLattice({
     const x = c.getContext('2d');
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const AM = '#E08A1E', AML = '#EDA547', CY = '#3CB7AF', CYL = '#7BD2CC', CL = '#5FCB8A', DIM = '#8E8A7E';
-    const TOP = 22; /* cropped grid row (see .profile__perovskite) */
+    const TOP = topCrop; /* px hidden above the panel (profile panel crops one 22px grid row) */
     let W = 1, H = 1, raf = 0, t = 0, visible = true, last = 0;
     function size() {
       const d = Math.min(window.devicePixelRatio || 1, 2), r = c.getBoundingClientRect();
@@ -4347,7 +4376,8 @@ function Hero() {
   }), React.createElement("div", {
     className: "profile__signal"
   }, React.createElement(window.PolarizationLattice, {
-    className: "profile__perovskite"
+    className: "profile__perovskite",
+    topCrop: 22
   }), React.createElement("div", {
     className: "profile__spine"
   }, (S.arc || []).map((a, i) => React.createElement(React.Fragment, {
@@ -4379,7 +4409,7 @@ function Hero() {
     className: "elf-explain"
   }, React.createElement("a", {
     className: "elf-explain__link",
-    href: "https://en.wikipedia.org/wiki/Perovskite_(structure)",
+    href: "https://en.wikipedia.org/wiki/Ferroelectricity",
     target: "_blank",
     rel: "noopener"
   }, React.createElement("svg", {
@@ -4398,16 +4428,22 @@ function Hero() {
     role: "tooltip"
   }, React.createElement("div", {
     className: "elf-explain__viz"
-  }, React.createElement(window.PerovskiteLattice, {
+  }, React.createElement(window.PolarizationLattice, {
     className: "elf-explain__canvas"
   })), React.createElement("p", {
     className: "elf-explain__txt"
-  }, "The panel is a rotating chain of ", React.createElement("b", null, "corner-sharing BX\u2086 octahedra"), " \u2014 the ", React.createElement("b", null, "ABX\u2083 perovskite"), " lattice. Teal vertices are the halide (X) anions, each amber core is the B-site cation, and the faint outer points are the A-site cations \u2014 the crystal family behind the lead-free piezoelectric materials I study."), React.createElement("a", {
+  }, "The panel shows ", React.createElement("b", null, "polarization switching"), " in a slab of ", React.createElement("b", null, "corner-sharing BX\u2086 octahedra"), " \u2014 the ", React.createElement("b", null, "ABX\u2083 perovskite"), " lattice. Teal vertices are the halide (X) anions, each amber core is the B-site cation, and the faint outer points are the A-site cations. As an electric field sweeps back and forth, the B-site cations shift off-centre and the polarization arrows flip, tracing the ", React.createElement("b", null, "P\u2013E hysteresis loop"), " in the corner \u2014 the signature of a ", React.createElement("b", null, "ferroelectric"), ". The loop is schematic, not measured data."), React.createElement("a", {
+    className: "elf-explain__wiki",
+    href: "https://en.wikipedia.org/wiki/Ferroelectricity",
+    target: "_blank",
+    rel: "noopener"
+  }, "Ferroelectricity on Wikipedia \u2192"), React.createElement("a", {
     className: "elf-explain__wiki",
     href: "https://en.wikipedia.org/wiki/Perovskite_(structure)",
     target: "_blank",
-    rel: "noopener"
-  }, "Read on Wikipedia \u2192"))))));
+    rel: "noopener",
+    style: { display: 'flex', marginTop: 6 }
+  }, "Perovskite structure \u2192"))))));
 }
 window.Hero = Hero;
 </script>
@@ -4464,7 +4500,7 @@ function Research() {
     className: "section__title"
   }, "Devices, materials, and the instruments that test them."), React.createElement("p", {
     className: "section__sub"
-  }, "Three-plus years leading collaborative R&D with the NRC and ", React.createElement("strong", {
+  }, "Four-plus years leading collaborative R&D with the NRC and ", React.createElement("strong", {
     style: {
       fontWeight: 600,
       color: 'var(--text-strong)'
@@ -5047,7 +5083,7 @@ function Footer() {
     className: "foot__meta"
   }, React.createElement(MapPin, {
     size: 14
-  }), " Waterloo, ON, Canada \xB7 Canadian Open Work Permit"), React.createElement(DS.Waveform, {
+  }), " Waterloo, ON, Canada"), React.createElement(DS.Waveform, {
     variant: "sine",
     color: "var(--signal-500)",
     height: 26,
