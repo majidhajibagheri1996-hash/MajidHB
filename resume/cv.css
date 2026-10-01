@@ -113,4 +113,16 @@ body { margin: 0; background: var(--ink-100); }
   .page { box-shadow: none; margin: 0; width: auto; padding: 0.5in 0.55in; }
   .cv-job, .cv-edu, .cv-sec { break-inside: avoid; }
   @page { size: letter; margin: 0; }
+  /* one-page résumé: tighter print spacing (a fit-to-page script scales any remainder) */
+  .page--onepage { padding: 0.38in 0.45in 0.32in; }
+  .page--onepage .cv-head { padding-bottom: 10px; margin-bottom: 12px; }
+  .page--onepage .cv-body { gap: 22px; }
+  .page--onepage .cv-sec { margin-bottom: 12px; }
+  .page--onepage .cv-sec__label { margin-bottom: 7px; }
+  .page--onepage .cv-exp-group { margin-bottom: 7px; }
+  .page--onepage .cv-impact { gap: 5px; }
+  .page--onepage .cv-job { margin-bottom: 9px; }
+  .page--onepage .cv-job ul { gap: 3px; }
+  .page--onepage .cv-edu { margin-bottom: 7px; }
+  .page--onepage .cv-pub { padding: 4px 0; }
 }
