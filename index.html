@@ -2379,7 +2379,7 @@ function PubRow({
     size: 13
   })) : /*#__PURE__*/React.createElement("span", {
     className: "pub__doi pub__doi--none"
-  }, "In proceedings")));
+  }, pub.status || "In proceedings")));
 }
 function Publications() {
   const {
@@ -3022,11 +3022,11 @@ window.SITE = {
   ],
 
   stats: [
-    { value: '16', label: 'Peer-reviewed publications' },
+    { value: '17', label: 'Peer-reviewed publications' },
     { value: '2', unit: 'patents', label: 'In preparation — lead-free PENG, low-temp' },
     { value: 'Nature', label: 'Co-author · Communications 2024' },
     { value: '3+', unit: 'yrs', label: 'Industry R&D · NRC · VITC' },
-    { value: 'October 2026', label: 'PhD graduation' },
+    { value: 'Fall 2026', label: 'PhD graduation (expected)' },
   ],
 
   projects: [
@@ -3040,7 +3040,7 @@ window.SITE = {
       blurb: 'A novel non-toxic, lead-free piezoelectric material that exploits the lone-pair effect to outperform its lead-based analogue even at room temperature — engineered for aerospace-grade, mass-producible energy harvesting that excels at low and cryogenic temperatures.',
       role: 'Designed the lead-free material system and cascaded device, validated electronic structure and ferroelectric polarization by first-principles DFT (Quantum ESPRESSO) in close agreement with experiment, and developed an optimized synthesis.',
       approach: 'Lone-pair lead-free piezocomposite · multi-layer cascaded architecture · DFT (Quantum ESPRESSO) · custom cryogenic instrumentation.',
-      outcome: 'Outperforms the lead-based analogue at room temperature; two patents in preparation with Voss Innovative Technologies Corporation (VITC / Shimco); presented at NENS 2025 (Beijing).',
+      outcome: 'Outperforms the lead-based analogue at room temperature; two patents in preparation with Voss Innovative Technologies Corporation (VITC / Shimco); presented at NENS 2025 (Beijing). First-author paper on the (ATHP)₂SnCl₄ lone-pair perovskite accepted in Advanced Functional Materials (2026) — 2.34 mW·cm⁻² power density and a d₃₃ of 65.7 pC·N⁻¹ in the optimized composite, with the device keeping 65% of its voltage at −90 °C.',
       keywords: ['PENG', 'lead-free', 'cryogenic', 'DFT', 'patents'],
       icon: 'Snowflake',
       href: 'https://doi.org/10.1016/j.nanoen.2023.109101',
@@ -3140,6 +3140,7 @@ window.SITE = {
 
   // Author list uses **…** to bold Majid's name. role: 'first' | 'co'.
   journals: [
+    { authors: '**M. Haji Bagheri**, A. A. Khan, M. F. Al Fattah, M. Al Madhoun, S. Shahzadi, A. Pan, M. S. Hasan, H. Wu, A. Aghigh, B. Bhawna, F. Légaré, V. Maheshwari, D. Ban', title: 'Lone-pair-induced lattice distortion in lead-free hybrid perovskites for high-performance nanogenerators', venue: 'Advanced Functional Materials', year: '2026', role: 'first', status: 'Accepted — DOI to follow' },
     { authors: '**M. Haji Bagheri**, A. Rajabi-Abhari, P. Li, A. A. Khan, C. Hao, N. R. Tanguy, D. Ban, L. Yu, N. Yan', title: 'Self-healable, recyclable, and mechanically robust vitrimer composite for high-performance triboelectric nanogenerators and self-powered wireless electronics', venue: 'Nano Energy', year: '2024', role: 'first', href: 'https://doi.org/10.1016/j.nanoen.2024.110306', img: 'assets/figures/papers/001.jpg', cap: 'FIG. 001 — PI/GP vitrimer composite-based TENG. (a) Schematic diagrams for the preparation procedure of PI/GP vitrimer composite. (b) Schematic illustration of PI/GP TENG device. PI/GP vitrimer composite demonstrates (c) recyclability and (d) self-healing properties. (e) Comparison of the tensile strength of PI/GP30 vitrimer composite from this study with self-healable polymers utilized for TENG applications in the literature. (f) The power density of PI/GP30 TENG is compared to self-healable TENGs previously reported in the literature.' },
     { authors: '**M. Haji Bagheri**, A. Rajabi-Abhari, O. Gibbs, P. Xi, A. A. Khan, F. Huang, Md. S. Hassan, N. Yan, D. Ban', title: 'Sustainable live sound monitoring and classification system enabled by a triboelectric nanogenerator and machine learning techniques', venue: 'Energy & Environmental Materials', year: '2025', role: 'first', href: 'https://doi.org/10.1002/eem2.70044', img: 'assets/figures/papers/002.jpg', cap: 'FIG. 002 — a) Diagram of the PI/GP film material preparation; SEM images showing. b) The morphology of the GP particles and c) the surface and d) the cross-sectional images of the PI/GP-coated paper. e) Schematic view of the working principle of the PI/GP-TENG device. f) Layer-by-layer diagram of the PI/GP-TENG device. g) Illustration of the developed live pipeline for audio classification.' },
     { authors: '**M. Haji Bagheri**, E. Gu, A. A. Khan, Y. Zhang, G. Xiao, M. Nankali, P. Peng, P. Xi, D. Ban', title: 'Machine-learning-enabled triboelectric nanogenerator for continuous sound monitoring and captioning', venue: 'Advanced Sensor Research', year: '2025', role: 'first', href: 'https://doi.org/10.1002/adsr.202400156', img: 'assets/figures/papers/003.jpg', cap: 'FIG. 003 — Setup for sound event monitoring and model training: From left to right, the image shows cascaded TENG devices housed within a Faraday cage, continuously capturing audio signals monitored in real-time using an oscilloscope. When a sound surpasses a predefined threshold, the device initiates recording, capturing the audio clip for subsequent analysis by the HTS-AT and Bidirectional Encoder representation from BEATs models for audio classification and EnCLAP for audio captioning. Before being processed by EnCLAP, spectral subtraction is applied to the audio clips to enhance signal clarity and quality.' },
@@ -3150,7 +3151,7 @@ window.SITE = {
   ],
 
   conferences: [
-    { authors: '**M. Haji Bagheri**, A. Rajabi-Abhari, O. Gibbs, P. Xi, A. A. Khan, X. Gaozhi, N. Yan, D. Ban', title: 'Self-powered live sound monitoring and classification via triboelectric nanogenerator and machine learning techniques', venue: 'IEEE IFETC · Vancouver, BC', year: '2025', role: 'first', img: 'assets/figures/papers/008.jpg', cap: 'FIG. 008 — IEEE IFETC 2025 · Vancouver, BC' },
+    { authors: '**M. Haji Bagheri**, A. Rajabi-Abhari, O. Gibbs, P. Xi, A. A. Khan, G. Xiao, N. Yan, D. Ban', title: 'Self-powered live sound monitoring and classification via triboelectric nanogenerator and machine learning techniques', venue: 'IEEE IFETC · Vancouver, BC', year: '2025', role: 'first', img: 'assets/figures/papers/008.jpg', cap: 'FIG. 008 — IEEE IFETC 2025 · Vancouver, BC' },
     { authors: '**M. Haji Bagheri**, A. A. Khan, M. Almadhoun, S. Shahzadi, D. Ban', title: 'High-performance lead-free composite piezoelectric nanogenerator for efficient energy harvesting and self-powered applications', venue: 'NENS · Beijing, China', year: '2025', role: 'first', img: 'assets/figures/papers/009.jpg', cap: 'FIG. 009 — NENS 2025 · Beijing, China' },
     { authors: '**M. Haji Bagheri**, J. Li, E. Gu, K. Habashy, M. M. Rana, A. A. Khan, Y. Zhang, G. Xiao, P. Xi, D. Ban', title: 'A data-driven environmental sound classification system with acoustic triboelectric nanogenerators', venue: 'IEEE CCECE · Kingston, ON', year: '2024', role: 'first', href: 'https://doi.org/10.1109/CCECE59415.2024.10667121', img: 'assets/figures/papers/010.jpg', cap: 'FIG. 010 — IEEE CCECE 2024 · Kingston, ON' },
     { authors: 'M. M. Rana, A. A. Khan, **M. Haji Bagheri**, D. Ban', title: 'Doping engineering towards stable lead-free flexible piezoelectric nanogenerator for self-powered wireless electronics', venue: 'CSSTC', year: '2024', role: 'co' },
@@ -3184,7 +3185,7 @@ window.SITE = {
       group: 'Roles',
       blurb: 'Where the work happened \u2014 three institutions, one trajectory from physics to device engineering.',
       items: [
-        { metric: 'Ph.D \u00B7 ECE (Nanotechnology) \u00B7 2022\u2013present', org: 'University of Waterloo \u00B7 Prof. Dayan Ban\u2019s Lab', text: 'Doctoral research in energy harvesting, self-powered sensing, and nanofabrication; leads the collaborative R&D streams below.' },
+        { metric: 'Ph.D \u00B7 ECE (Nanotechnology) \u00B7 2022\u2013present', org: 'University of Waterloo \u00B7 Prof. Dayan Ban\u2019s Lab', text: 'Doctoral research in energy harvesting, self-powered sensing, and nanofabrication; leads the collaborative R&D streams below. Cleanroom process integration at the Quantum-Nano Fabrication & Characterization Facility (QNFCF): InGaN/GaN multiple-quantum-well PIN micro-photodetectors with on-chip grating couplers through a ~30-step flow (PECVD/ALD, e-beam evaporation & sputtering, reactive-ion etching, lift-off, e-beam lithography). Phase-field modeling of low-temperature ferroelectric phase transitions with Ferret / MOOSE.' },
         { metric: 'M.Sc \u00B7 Physics \u00B7 2018\u20132021', org: 'Sharif University of Technology, Tehran', text: 'Supervised by Prof. Ali Esfandiar (Department of Physics). Led the battery research group \u2014 binder-free SnS\u2082/MXene Li-ion anodes and custom glove-box instrumentation.' },
         { metric: 'B.Sc \u00B7 Physics, Condensed Matter \u00B7 2014\u20132018', org: 'Iran University of Science & Technology, Tehran', text: 'Ranked #1 in cohort; thesis on Monte-Carlo simulation of thin-film growth (ballistic deposition, KPZ universality).' },
       ],
@@ -3207,7 +3208,7 @@ window.SITE = {
         { metric: 'Advanced Calculus & Numerical Methods I & II', org: 'University of Waterloo · ECE', text: 'Graduate Teaching Assistant · Instructors: Prof. Russell Thompson & Peter Neathway · Spring 2024 – Fall 2026.' },
         { metric: 'Invited guest lecture · April 2026', org: 'Wilkes University, USA', text: '“Triboelectric Nanogenerator-Based Microphones Integrated with Machine Learning for Sustainable Sound Monitoring.” Invited by Dr. Asif Abdullah Khan.' },
         { metric: 'Numerical Methods', org: 'University of Waterloo · ECE', text: 'Graduate Teaching Assistant · Instructor: Prof. Douglas Wilhelm Harder · Winter 2025 & 2026.' },
-        { metric: 'Microfabrication & Thin-film Technology Lab', org: 'University of Waterloo · ECE', text: 'Graduate Lab Assistant — electronic-device simulation & fabrication · Instructor: Prof. Bahareh Sadeghimakki · Fall 2023 – Fall 2024.' },
+        { metric: 'Microfabrication & Thin-film Technology Lab', org: 'University of Waterloo · ECE', text: 'Graduate Lab Assistant — electronic-device simulation & fabrication · Instructor: Prof. Bahareh Sadeghimakki · Fall 2023.' },
         { metric: 'Nano-instrumentation Lab — MEMS devices', org: 'University of Waterloo · ECE', text: 'Graduate Lab Assistant — MEMS device fabrication, simulation & characterization · Instructors: Prof. Hany Aziz & Bahareh Sadeghimakki · Winter 2023 & 2024.' },
         { metric: 'Characterization of Nanomaterials', org: 'University of Waterloo · ECE', text: 'Graduate Teaching Assistant · Instructor: Prof. Guo-Xing Miao · Spring 2023.' },
         { metric: 'Advanced Physics Laboratory (M.Sc.)', org: 'Sharif University of Technology · Physics', text: 'Graduate Lab Assistant · Instructors: Prof. Azam Irajizad & Nima Taghavinia · Spring 2020 – Spring 2022.' },
@@ -3218,9 +3219,9 @@ window.SITE = {
 
   // Capabilities — grouped skills & tools, drawn from the CV Skills section.
   capabilities: [
-    { label: 'Device fabrication', items: ['PENG / TENG fabrication', 'Li-ion cells & coin cells', 'Photolithography', 'CVD · PVD · sputtering · CVT', 'Spin coating · electrospinning', 'MEMS · CMOS · MOSFET · diodes', 'Cleanroom operations'] },
-    { label: 'Characterization', items: ['XRD · FTIR', 'SEM / EDX · TEM · AFM', 'Optical microscopy', 'I–V · C–V', 'Cyclic voltammetry · EIS', 'Battery testing systems'] },
-    { label: 'Simulation & modeling', items: ['DFT — Quantum ESPRESSO', 'COMSOL', 'Ansys Lumerical', 'Monte Carlo / stochastic'] },
+    { label: 'Device fabrication', items: ['PENG / TENG fabrication', 'Li-ion cells & coin cells', 'Photolithography', 'CVD · PVD · sputtering · CVT', 'Spin coating · electrospinning', 'MEMS · CMOS · MOSFET · diodes', 'III-nitride (InGaN/GaN) devices', 'E-beam & maskless lithography · ALD · PECVD · RIE', 'Cleanroom operations (QNFCF)'] },
+    { label: 'Characterization', items: ['XRD · FTIR', 'SEM / EDX · TEM · AFM', 'Optical microscopy', 'I–V · C–V', 'Cyclic voltammetry · EIS', 'DSC · DMTA · TGA', 'Probe-station tests', 'Battery testing systems'] },
+    { label: 'Simulation & modeling', items: ['DFT — Quantum ESPRESSO', 'Phase-field — Ferret / MOOSE', 'COMSOL', 'Ansys Lumerical', 'Monte Carlo / stochastic'] },
     { label: 'Software & data', items: ['Python', 'MATLAB', 'Machine learning / AI', 'Origin Pro', 'LaTeX', 'Data analysis & reporting'] },
     { label: 'Instrumentation, built', items: ['Cryogenic rig (−150 °C ±2 °C)', 'Humidity bench (RH 5–99%)', 'Motor-tapping test benches', 'Battery-grade glove box (O₂ < ppm)', 'Glove-box electronics · Sharif Solar'] },
     { label: 'Leadership & collaboration', items: ['Industry / government R&D', 'Research project leadership (3+ yrs)', 'Mentored 15+ students (co-op · URA · grad)', 'Technical reporting & presentations'] },
@@ -4529,7 +4530,7 @@ function PubRow({
     size: 13
   })) : React.createElement("span", {
     className: "pub__doi pub__doi--none"
-  }, "In proceedings")));
+  }, pub.status || "In proceedings")));
 }
 function Lightbox({
   data,
