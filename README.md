@@ -32,3 +32,9 @@ resume/
 - The homepage loads React and Google Fonts from CDNs, so it needs an internet connection.
 - The résumé pages are self-hosted (offline-capable) and have a **Print / Save PDF** button.
 - Contact form posts via Formspree — set your form ID in `index.html` (search `formspreeId`).
+
+## Versions
+- **Published version** — the current live site, saved on branch `Website-Published`.
+- **Default version** — the site as it was before the October 2026 edits, saved on branch `Website-Backup-Default`.
+
+GitHub Pages deploys from `Website-Optimized-Higher-Quality`. To switch the live site to either version, commit that branch's files onto `Website-Optimized-Higher-Quality` as a new commit (no force-push), so the history stays intact and you can switch back.

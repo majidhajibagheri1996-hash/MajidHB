@@ -126,3 +126,17 @@ body { margin: 0; background: var(--ink-100); }
   .page--onepage .cv-edu { margin-bottom: 7px; }
   .page--onepage .cv-pub { padding: 4px 0; }
 }
+
+/* Small screens (screen only — print layout is unchanged): let the sheet fit the viewport */
+@media screen and (max-width: 840px) {
+  .page { width: auto; margin: 0 0 16px; padding: 28px 16px 24px; box-shadow: none; }
+  .toolbar { flex-wrap: wrap; }
+  .cv-head__row { flex-wrap: wrap; gap: 12px; }
+  .cv-name { white-space: normal; font-size: 28px; }
+  .cv-tag { max-width: none; }
+  .cv-body { grid-template-columns: 1fr; gap: 8px; }
+  .cv-job__top { flex-wrap: wrap; gap: 2px 12px; }
+  .cv-row { flex-wrap: wrap; }
+  .cv-row__k { width: auto; }
+  .cv-contact, .cv-auth, .cv-pub__t, .cv-job li span { overflow-wrap: anywhere; }
+}
