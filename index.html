@@ -446,12 +446,13 @@ section[id] { scroll-margin-top: 84px; }
   display: flex; flex-direction: column; gap: 3px; }
 
 /* phonon-lattice readout strip — animated traveling wave through a row of atoms */
-.profile__signal { position: relative; overflow: hidden; min-height: 204px;
+.profile__signal { position: relative; overflow: hidden; min-height: 182px;
   background: var(--surface-panel); color: var(--text-on-dark);
   background-image: linear-gradient(var(--panel-line) 1px, transparent 1px), linear-gradient(90deg, var(--panel-line) 1px, transparent 1px);
   background-size: 22px 22px;
   display: flex; flex-direction: column; justify-content: flex-end; }
-.profile__perovskite { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+/* canvas keeps its original 204px frame; the top 22px grid row is cropped so the lattice sits one cell closer to the photo */
+.profile__perovskite { position: absolute; left: 0; right: 0; bottom: 0; top: -22px; width: 100%; height: calc(100% + 22px); z-index: 0; pointer-events: none; }
 .profile__spine { position: relative; z-index: 1; display: flex; align-items: stretch; justify-content: space-between; width: 100%; box-sizing: border-box;
   padding: 14px 16px 15px;
   background: linear-gradient(to top, rgba(15,15,11,0.96) 16%, rgba(15,15,11,0.55) 62%, rgba(15,15,11,0)); }
