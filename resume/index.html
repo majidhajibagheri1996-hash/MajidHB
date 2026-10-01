@@ -28,7 +28,7 @@
   <button class="toolbar__btn" onclick="window.print()">Print / Save PDF</button>
 </div>
 
-<div class="page">
+<div class="page page--onepage">
   <header class="cv-head">
     <div class="cv-head__row">
       <div>
@@ -142,5 +142,21 @@
     </main>
   </div>
 </div>
+<script>
+/* One-page résumé: when printing, shrink just enough to fit a single Letter/A4 sheet. */
+(function () {
+  var PAGE_H = 1056, PAGE_W = 794; /* Letter height, A4 width at 96 dpi (the tighter of each) */
+  function fit() {
+    var el = document.querySelector('.page--onepage'); if (!el) return;
+    el.style.zoom = '';
+    var z = Math.min(1, (PAGE_H - 4) / el.scrollHeight);
+    if (z < 1) el.style.zoom = z.toFixed(3);
+  }
+  function reset() { var el = document.querySelector('.page--onepage'); if (el) el.style.zoom = ''; }
+  window.addEventListener('beforeprint', fit);
+  window.addEventListener('afterprint', reset);
+  if (window.matchMedia) { var mq = window.matchMedia('print'); mq.addEventListener && mq.addEventListener('change', function (e) { e.matches ? fit() : reset(); }); }
+})();
+</script>
 </body>
 </html>
