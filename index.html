@@ -3028,9 +3028,9 @@ window.SITE = {
 
   stats: [
     { value: '17', label: 'Peer-reviewed publications' },
-    { value: '2', unit: 'patents', label: 'In preparation — lead-free PENG, low-temp' },
+    { value: '2', unit: 'patents', label: 'In preparation — lone-pair-induced PENG · non-ferroelectric multilayer PENG · low-temp aerospace' },
     { value: 'Nature', label: 'Co-author · Communications 2024' },
-    { value: '3+', unit: 'yrs', label: 'Industry R&D · NRC · VITC' },
+    { value: '4+', unit: 'yrs', label: 'Industry R&D · NRC · VITC' },
     { value: 'Fall 2026', label: 'PhD graduation (expected)' },
   ],
 
@@ -3077,7 +3077,7 @@ window.SITE = {
       blurb: 'A custom test platform built from the ground up to characterize energy-harvesting devices across extreme environments — regulating temperature to −150 °C at ±2 °C and relative humidity from 5–99% at ±3%.',
       role: 'Designed, built and programmed the rig integrating an in-situ humidity sensor, humidifier and dehumidifier, plus motor-tapping benches for reproducible benchmarking.',
       approach: 'Temperature & humidity control · d33 / dielectric / I–V / electromechanical testing · motor-tapping benchmarking · co-op / URA mentorship.',
-      outcome: '3+ years of research leadership across NRC and VITC (Shimco) streams within Prof. Dayan Ban’s lab — enabling reproducible low-temperature device measurements.',
+      outcome: '4+ years of research leadership across NRC and VITC (Shimco) streams within Prof. Dayan Ban’s lab — enabling reproducible low-temperature device measurements.',
       keywords: ['VITC (Shimco)', 'instrumentation', 'cryogenic', 'characterization'],
       icon: 'Zap',
     },
@@ -3231,7 +3231,7 @@ window.SITE = {
     { label: 'Simulation & modeling', items: ['DFT — Quantum ESPRESSO (PDOS · ELF · polarization)', 'Phase-field — Ferret / MOOSE', 'COMSOL', 'Ansys Lumerical', 'Monte Carlo / stochastic'] },
     { label: 'Software & data', items: ['Python', 'MATLAB', 'Machine learning / AI', 'Origin Pro', 'LaTeX', 'Data analysis & reporting'] },
     { label: 'Instrumentation, built', items: ['Cryogenic rig (−150 °C ±2 °C)', 'PID control · Arduino + GUI', 'Humidity bench (RH 5–99%)', 'Motor-tapping test benches', 'Battery-grade glove box (O₂ < ppm)', 'Glove-box electronics · Sharif Solar'] },
-    { label: 'Leadership & collaboration', items: ['Industry / government R&D', 'Research project leadership (3+ yrs)', 'Mentored 15+ students (co-op · URA · grad)', 'Technical reporting & presentations'] },
+    { label: 'Leadership & collaboration', items: ['Industry / government R&D', 'Research project leadership (4+ yrs)', 'Mentored 15+ students (co-op · URA · grad)', 'Technical reporting & presentations'] },
   ],
 
   // Awards & honors — from the full CV.
@@ -4035,6 +4035,95 @@ Object.assign(window, {
   GrapheneField
 });
 </script>
+<script>
+/* Portrait panel — polarization switching in a perovskite slab, with a schematic P–E loop. */
+function PolarizationLattice({
+  className
+}) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const c = ref.current;
+    if (!c) return;
+    const x = c.getContext('2d');
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const AM = '#E08A1E', AML = '#EDA547', CY = '#3CB7AF', CYL = '#7BD2CC', CL = '#5FCB8A', DIM = '#8E8A7E';
+    const TOP = 22; /* cropped grid row (see .profile__perovskite) */
+    let W = 1, H = 1, raf = 0, t = 0, visible = true, last = 0;
+    function size() {
+      const d = Math.min(window.devicePixelRatio || 1, 2), r = c.getBoundingClientRect();
+      W = Math.max(1, r.width); H = Math.max(1, r.height);
+      c.width = Math.round(W * d); c.height = Math.round(H * d); x.setTransform(d, 0, 0, d, 0, 0);
+    }
+    function dot(X, Y, r, col, glow) {
+      if (glow) { x.fillStyle = col; x.globalAlpha = 0.25; x.beginPath(); x.arc(X, Y, r * 2.4, 0, 7); x.fill(); x.globalAlpha = 1; }
+      x.fillStyle = col; x.beginPath(); x.arc(X, Y, r, 0, 7); x.fill();
+    }
+    function oct(cx, cy, s) {
+      const p = [[cx, cy - s], [cx + s, cy], [cx, cy + s], [cx - s, cy], [cx + s * 0.45, cy - s * 0.35], [cx - s * 0.45, cy + s * 0.35]];
+      x.strokeStyle = CY; x.globalAlpha = 0.7; x.lineWidth = 1.1;
+      [[0, 1], [1, 2], [2, 3], [3, 0], [0, 4], [1, 4], [2, 5], [3, 5], [0, 5], [2, 4]].forEach(([a, b]) => { x.beginPath(); x.moveTo(p[a][0], p[a][1]); x.lineTo(p[b][0], p[b][1]); x.stroke(); });
+      x.globalAlpha = 1; return p;
+    }
+    function draw() {
+      x.clearRect(0, 0, W, H);
+      const Hv = H - TOP;
+      const E = Math.sin(t * 0.9), dE = Math.cos(t * 0.9), Ec = 0.35;
+      const P = Math.tanh((E + (dE > 0 ? -Ec : Ec)) * 3.2);
+      const narrow = W < 420;
+      const LW = narrow ? W : W * 0.86;
+      const s = Math.min(25, LW / 9), cx = LW / 2, cy = TOP + Hv * 0.38;
+      /* A-site cations */
+      x.fillStyle = 'rgba(233,230,220,0.55)';
+      for (let k = 0; k < 14; k++) { const a = k * 2.399; x.beginPath(); x.arc(cx + Math.cos(a) * (95 + k * 6) + Math.sin(t * 2 + k) * 0.6, TOP + Hv * 0.40 + Math.sin(a * 1.3) * 52 + Math.cos(t * 1.7 + k) * 0.6, 1.6, 0, 7); x.fill(); }
+      let k = 0;
+      for (let j = 0; j <= 1; j++) for (let i = -1; i <= 1; i++) {
+        const ox = cx + i * 2 * s * 1.05 + (j ? s * 0.7 : 0), oy = cy + (j ? s * 1.05 : -s * 0.35);
+        const p = oct(ox, oy, s);
+        p.slice(0, 4).forEach(q => dot(q[0], q[1], 2.4, CL));
+        const flip = Math.tanh(P * 1.4 + (k - 2.5) * 0.05);
+        dot(ox + flip * s * 0.22, oy, 4, AM, true);
+        if (j === 0) {
+          const L = s * 0.55 * flip, ay = oy - s * 1.25;
+          x.strokeStyle = AML; x.lineWidth = 1.6; x.beginPath(); x.moveTo(ox - L, ay); x.lineTo(ox + L, ay);
+          if (Math.abs(L) > 2) { const sg = Math.sign(L); x.moveTo(ox + L, ay); x.lineTo(ox + L - sg * 5, ay - 4); x.moveTo(ox + L, ay); x.lineTo(ox + L - sg * 5, ay + 4); }
+          x.stroke();
+        }
+        k++;
+      }
+      if (!narrow) { /* schematic P–E loop */
+        const bw = 96, bh = 70, bx = W - bw - 16, by = TOP + 22;
+        x.strokeStyle = 'rgba(233,230,220,0.25)'; x.lineWidth = 1; x.strokeRect(bx, by, bw, bh);
+        x.beginPath(); x.moveTo(bx, by + bh / 2); x.lineTo(bx + bw, by + bh / 2); x.moveTo(bx + bw / 2, by); x.lineTo(bx + bw / 2, by + bh); x.stroke();
+        x.strokeStyle = CYL; x.lineWidth = 1.5; x.beginPath();
+        for (let n = 0; n <= 120; n++) { const e = -1 + 2 * n / 120, y = Math.tanh((e - Ec) * 3.2), X = bx + bw / 2 + e * bw * 0.45, Y = by + bh / 2 - y * bh * 0.4; n ? x.lineTo(X, Y) : x.moveTo(X, Y); }
+        for (let n = 120; n >= 0; n--) { const e = -1 + 2 * n / 120, y = Math.tanh((e + Ec) * 3.2); x.lineTo(bx + bw / 2 + e * bw * 0.45, by + bh / 2 - y * bh * 0.4); }
+        x.stroke();
+        dot(bx + bw / 2 + E * bw * 0.45, by + bh / 2 - P * bh * 0.4, 3, AM, true);
+        x.fillStyle = DIM; x.font = '9px "IBM Plex Mono", ui-monospace, monospace'; x.fillText('P–E', bx + 3, by + 10);
+      }
+    }
+    function frame(now) {
+      raf = requestAnimationFrame(frame);
+      if (!visible) return;
+      const dt = last ? Math.min(0.05, (now - last) / 1000) : 0; last = now;
+      t += dt; draw();
+    }
+    size();
+    const ro = window.ResizeObserver ? new ResizeObserver(() => { size(); draw(); }) : null;
+    if (ro) ro.observe(c); else window.addEventListener('resize', size);
+    const io = window.IntersectionObserver ? new IntersectionObserver(es => { visible = es[0].isIntersecting; last = 0; }) : null;
+    if (io) io.observe(c);
+    if (reduce) { t = 1.2; draw(); } else raf = requestAnimationFrame(frame);
+    return () => { cancelAnimationFrame(raf); if (ro) ro.disconnect(); else window.removeEventListener('resize', size); if (io) io.disconnect(); };
+  }, []);
+  return React.createElement("canvas", {
+    ref: ref,
+    className: className,
+    "aria-hidden": "true"
+  });
+}
+window.PolarizationLattice = PolarizationLattice;
+</script>
 
 <script>
 window.ORG_LINKS = {
@@ -4257,7 +4346,7 @@ function Hero() {
     loading: "lazy"
   }), React.createElement("div", {
     className: "profile__signal"
-  }, React.createElement(window.PerovskiteLattice, {
+  }, React.createElement(window.PolarizationLattice, {
     className: "profile__perovskite"
   }), React.createElement("div", {
     className: "profile__spine"
