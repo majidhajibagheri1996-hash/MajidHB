@@ -725,7 +725,9 @@ html, body { max-width: 100%; }
   .profile-col { max-width: 100%; }
   .profile__bar { flex-wrap: wrap; gap: 4px 10px; font-size: 9px; }
   .profile__bar > span { white-space: normal; }
-  .profile__spine { flex-wrap: wrap; gap: 8px 10px; }
+  .profile__spine { flex-wrap: nowrap; gap: 10px; }
+  .profile__spinenode { flex: 1 1 0; }
+  .profile__spinenode:last-child { flex: 0 1 auto; }
   .profile__spinefld { white-space: normal; }
   .profile__spinesep { display: none; }
   .hero__lead { overflow-wrap: break-word; max-width: 100%; }
@@ -3021,7 +3023,7 @@ window.SITE = {
 
   // Academic expertise arc — spans B.Sc → M.Sc → Ph.D, shown under the portrait.
   arc: [
-    { deg: 'B.Sc', field: 'Physics · Cond. Matter' },
+    { deg: 'B.Sc', field: 'Physics · Condensed Matter' },
     { deg: 'M.Sc', field: 'Physics' },
     { deg: 'Ph.D', field: 'ECE · Nanotech' },
   ],
