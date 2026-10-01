@@ -412,6 +412,14 @@ section[id] { scroll-margin-top: 84px; }
   .wordmark__logo { width: 27px; height: 27px; }
   .nav__links { gap: 9px; }
 }
+/* very narrow phones (≤350px): keep the wordmark clear of the CV button, and let long tags wrap */
+@media (max-width: 350px) {
+  .wordmark { font-size: 12px; gap: 6px; }
+  .wordmark__logo { width: 24px; height: 24px; }
+}
+@media (max-width: 480px) {
+  .bag-tag.bag-tag { white-space: normal; max-width: 100%; line-height: 1.3; }
+}
 
 /* ---- Hero ---- */
 .hero { position: relative; padding: 72px 0 56px; overflow: hidden; background: var(--surface-page); }
@@ -5271,6 +5279,45 @@ ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(
 </script>
 
 
+<script>
+/* In-page links: scroll after the mobile menu has closed, then correct once if
+   lazy images above the target changed the layout mid-scroll. */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function targetTop(el) {
+    var m = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+    return Math.max(0, el.getBoundingClientRect().top + window.scrollY - m);
+  }
+  function go(el, tries) {
+    window.scrollTo({ top: targetTop(el), behavior: reduce ? 'auto' : 'smooth' });
+    if (tries <= 0) return;
+    var done = false;
+    function check() {
+      if (done) return; done = true;
+      window.removeEventListener('scrollend', check);
+      if (Math.abs(window.scrollY - targetTop(el)) > 4) go(el, tries - 1);
+    }
+    window.addEventListener('scrollend', check, { once: true });
+    setTimeout(check, 1200);
+  }
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    var el = id === 'top' ? document.body : document.getElementById(id);
+    if (!el) return;
+    e.preventDefault();
+    if (history.pushState) history.pushState(null, '', '#' + id);
+    /* wait two frames so the closing menu no longer affects layout */
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      if (id === 'top') { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); return; }
+      go(el, 2);
+    }); });
+  });
+})();
+</script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d0c9d84ddd44472ca31aeea454d33cc0"}'></script><!-- End Cloudflare Web Analytics -->
 
 </body>
