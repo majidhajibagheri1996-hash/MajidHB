@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>30nama</title>
+  <style>
+    html, body { width: 1920px; height: 1080px; margin: 0; background: #0b0b0f; color: #f5f5f7;
+      font-family: "SamsungOne", "Helvetica Neue", Arial, sans-serif; overflow: hidden; }
+    #msg { position: absolute; top: 50%; width: 100%; transform: translateY(-50%);
+      text-align: center; font-size: 44px; line-height: 1.5; }
+    #msg small { font-size: 28px; opacity: 0.6; }
+  </style>
+</head>
+<body>
+  <div id="msg">Opening 30nama&hellip;</div>
+  <script>
+    /* Shortcut app: opens the site in Samsung's Internet app (org.tizen.browser),
+     * which has the on-screen pointer needed to use a normal website, then exits. */
+    (function () {
+      var URL = 'https://30nama.com/';
+      var msg = document.getElementById('msg');
+
+      function exit() {
+        try { tizen.application.getCurrentApplication().exit(); } catch (e) { /* ignore */ }
+      }
+
+      function fail(err) {
+        msg.innerHTML = 'Could not open the browser.<br><small></small>';
+        msg.lastChild.textContent = (err && (err.name + ' ' + (err.message || ''))) + ' - press Back to close';
+      }
+
+      document.addEventListener('keydown', function (e) {
+        if (e.keyCode === 10009) exit();
+      });
+
+      if (typeof tizen === 'undefined') return fail({ name: 'Not running on a TV' });
+      var control = new tizen.ApplicationControl('http://tizen.org/appcontrol/operation/view', URL);
+      try {
+        tizen.application.launchAppControl(control, 'org.tizen.browser', exit, function () {
+          tizen.application.launchAppControl(control, null, exit, fail);
+        });
+      } catch (e) {
+        fail(e);
+      }
+    })();
+  </script>
+</body>
+</html>
