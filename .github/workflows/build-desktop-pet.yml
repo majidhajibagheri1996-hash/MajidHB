@@ -1,0 +1,26 @@
+name: Build Bubu & Dudu (Windows .exe)
+
+on:
+  push:
+    paths:
+      - "desktop-pet/**"
+      - ".github/workflows/build-desktop-pet.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install PyInstaller
+        run: python -m pip install --upgrade pip pyinstaller
+      - name: Build single-file exe
+        working-directory: desktop-pet
+        run: pyinstaller --onefile --noconsole --name BubuDudu bubu_dudu.pyw
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BubuDudu-windows
+          path: desktop-pet/dist/BubuDudu.exe
